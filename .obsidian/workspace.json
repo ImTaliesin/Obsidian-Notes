@@ -4,39 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "13ca81ab1ff66a0b",
+        "id": "b0560a6c28832a45",
         "type": "tabs",
         "children": [
           {
-            "id": "7f9588023f0045ba",
+            "id": "5c05e0fbb4f2dfe3",
             "type": "leaf",
             "state": {
               "type": "graph",
               "state": {}
-            }
-          },
-          {
-            "id": "3d2c61a638dd9acf",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "DOM manipulation methods in jQuery.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "0b8cbeeac8873a7b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Event Listeners.md",
-                "mode": "source",
-                "source": false
-              }
             }
           }
         ]
@@ -171,17 +147,24 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "f9ea8d2f8f2bdf44",
+  "active": "5c05e0fbb4f2dfe3",
   "lastOpenFiles": [
+    "DOM manipulation methods.md",
+    "ExpressJS.md",
+    "HTML.md",
+    "Svelte.md",
     "css.md",
+    "NPM.md",
     "Event Listeners.md",
+    "Untitled 2.md",
+    "tailwind css.md",
+    "Untitled.md",
     "Javascript.md",
-    "html.md",
-    "DOM manipulation methods in jQuery.md",
-    "!jQuery.md",
-    "Untitled 2.canvas",
+    "NodeJS.md",
     "Untitled 1.canvas",
     "Untitled.canvas",
+    "!jQuery.md",
+    "Untitled 2.canvas",
     "Untitled",
     "Typescript",
     "Svelte",
