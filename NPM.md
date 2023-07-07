@@ -1,3 +1,5 @@
+You always have to `npm init`
+
 
 To be able to use the EMAC's 'import __ from __', you need to 
 open package.json 

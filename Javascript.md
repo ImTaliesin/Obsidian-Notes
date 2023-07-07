@@ -1,3 +1,3 @@
-[[!jQuery]] [[html]] [[css]]
+[[!jQuery]] [[html]] [[css]] [[NPM]]
 
 This is new
