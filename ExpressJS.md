@@ -19,3 +19,12 @@ app.get('/', (req, res) => {
     res.send('<h1>Sup Bitch</h1>');
     });
 ```
+
+You can send [[html]] files as well
+
+```
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + 'index.html');
+    });
+```
+
