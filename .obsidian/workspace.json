@@ -21,10 +21,18 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ExpressJS.md",
+                "file": "body-parser.md",
                 "mode": "source",
                 "source": false
               }
+            }
+          },
+          {
+            "id": "8981ff55da3d3784",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {}
             }
           },
           {
@@ -40,7 +48,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -106,7 +114,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ExpressJS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +130,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "ExpressJS.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -145,9 +151,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "ExpressJS.md"
-              }
+              "state": {}
             }
           },
           {
@@ -175,11 +179,14 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "1d7dd67840a182f2",
+  "active": "8981ff55da3d3784",
   "lastOpenFiles": [
+    "Untitled.canvas",
     "body-parser.md",
-    "html.md",
+    "Middleware.md",
+    "Untitled",
     "ExpressJS.md",
+    "html.md",
     "API.md",
     "NPM.md",
     "Javascript.md",
@@ -189,14 +196,12 @@
     "tailwind css.md",
     "Svelte.md",
     "DOM manipulation methods.md",
-    "Untitled.canvas",
     "Untitled 1.canvas",
     "css.md",
     "Event Listeners.md",
     "DOM manipulation methods in jQuery.md",
     "!jQuery.md",
     "Untitled 2.canvas",
-    "Untitled",
     "Typescript",
     "Svelte",
     "html",

@@ -50,16 +50,19 @@ app.get('/', (req, res) => {
 
       res.write("<h1>Yay it's the weekend!</h1>");
 
-    } else {
-
-        res.sendFile(__dirname + "/weekday.html");
-
-    }
+    } else {res.sendFile(__dirname + "/weekday.html");}
 
     res.send();
 
-    }
+    });
+```
 
-);
+To make sure #__dirname works with [[body-parser]] ,use
+
+```
+import express from "express"
+import {dirname} from "path"
+import {fileURLToPath} from "url"
+const __dirname = dirname(fileURLToPath(import.meta.url))
 ```
 
