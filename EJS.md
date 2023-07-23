@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 What ever goes inbetween the tags will be interpreted as [[Javascript]]
 
