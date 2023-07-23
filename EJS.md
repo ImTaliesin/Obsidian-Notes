@@ -8,3 +8,4 @@ There are five different EJS #Tags
 <%-                   %>                  Render as HTML
 <%#            %>                        This is a comment
 <%- include("Filename.ejs")%>    This will let you inset a file 
+
