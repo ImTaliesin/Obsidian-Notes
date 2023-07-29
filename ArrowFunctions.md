@@ -1,4 +1,5 @@
-#AnonymousFunction
+Very useful [[Javascript]] functions, used often in [[React JS]]
+#AnonymousFunction 
 ``() =>
 
 export default ( _ , _ ) => {
