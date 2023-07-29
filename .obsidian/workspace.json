@@ -8,26 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "e3d1b6b96f7619c2",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {}
-            }
-          },
-          {
-            "id": "1d7dd67840a182f2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "body-parser.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "8981ff55da3d3784",
             "type": "leaf",
             "state": {
@@ -36,19 +16,7 @@
             }
           },
           {
-            "id": "0595a34f218076ab",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "EJS.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "3fe1fce4ce826759",
+            "id": "e11b64dd2b59b6f6",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -58,41 +26,9 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "1cae80e4acb5d98f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "ArrowFunctions.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "a69ec4c47cbdd142",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {}
-            }
-          },
-          {
-            "id": "0b8cbeeac8873a7b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Event Listeners.md",
-                "mode": "source",
-                "source": false
-              }
-            }
           }
         ],
-        "currentTab": 6
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -121,7 +57,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#AnonymousFunction",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -138,8 +74,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -159,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "React JS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -175,6 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "React JS.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -196,7 +133,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "React JS.md"
+              }
             }
           },
           {
@@ -211,8 +150,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -225,22 +163,22 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "a69ec4c47cbdd142",
+  "active": "f9ea8d2f8f2bdf44",
   "lastOpenFiles": [
     "ArrowFunctions.md",
+    "Array.md",
+    "html.md",
     "React JS.md",
     "ExpressJS.md",
-    "Middleware.md",
-    "Array.md",
+    "Event Listeners.md",
     "Javascript.md",
-    "Untitled",
-    "NPM.md",
-    "!jQuery.md",
     "EJS.md",
     "Untitled.canvas",
     "body-parser.md",
-    "html.md",
+    "Middleware.md",
+    "Untitled",
     "API.md",
+    "NPM.md",
     "NodeJS.md",
     "JSON.md",
     "Terminal and Bash.md",
@@ -249,8 +187,8 @@
     "DOM manipulation methods.md",
     "Untitled 1.canvas",
     "css.md",
-    "Event Listeners.md",
     "DOM manipulation methods in jQuery.md",
+    "!jQuery.md",
     "Untitled 2.canvas",
     "Typescript",
     "Svelte",
