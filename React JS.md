@@ -1,3 +1,4 @@
+`npx create-react-app`
 React is a [[Javascript]] framework.
 
 Every component updates asynchronously from each other component.

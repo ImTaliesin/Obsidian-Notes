@@ -60,6 +60,30 @@
             }
           },
           {
+            "id": "1cae80e4acb5d98f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ArrowFunctions.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "a69ec4c47cbdd142",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Javascript.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
             "id": "0b8cbeeac8873a7b",
             "type": "leaf",
             "state": {
@@ -72,7 +96,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -118,7 +142,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -138,7 +163,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "React JS.md",
+                "file": "Javascript.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -155,7 +180,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "React JS.md",
+                "file": "Javascript.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -178,7 +203,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "React JS.md"
+                "file": "Javascript.md"
               }
             }
           },
@@ -208,19 +233,21 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "3fe1fce4ce826759",
+  "active": "a69ec4c47cbdd142",
   "lastOpenFiles": [
-    "!jQuery.md",
+    "Array.md",
+    "ArrowFunctions.md",
     "React JS.md",
-    "EJS.md",
     "Untitled",
+    "NPM.md",
+    "!jQuery.md",
+    "EJS.md",
     "Untitled.canvas",
     "body-parser.md",
     "Middleware.md",
     "ExpressJS.md",
     "html.md",
     "API.md",
-    "NPM.md",
     "Javascript.md",
     "NodeJS.md",
     "JSON.md",

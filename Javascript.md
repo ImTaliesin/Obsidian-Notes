@@ -1,3 +1,14 @@
 [[!jQuery]] [[html]] [[css]] [[NPM]]
 
-This is new
+
+```
+function handleTimeout() {
+console.log("Timed out!")
+}
+
+const handleTimeout = () => {
+	console.log("Timed out!")
+}
+
+setTimeout(handletimeout, 2000);
+```
