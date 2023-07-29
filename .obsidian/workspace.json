@@ -19,6 +19,14 @@
             "id": "e11b64dd2b59b6f6",
             "type": "leaf",
             "state": {
+              "type": "graph",
+              "state": {}
+            }
+          },
+          {
+            "id": "392d3255d0bf707d",
+            "type": "leaf",
+            "state": {
               "type": "markdown",
               "state": {
                 "file": "React JS.md",
@@ -28,7 +36,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -57,7 +65,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#declarative_Programming",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -74,7 +82,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -163,23 +172,24 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "f9ea8d2f8f2bdf44",
+  "active": "7aab129c12472c90",
   "lastOpenFiles": [
+    "React JS.md",
+    "Javascript.md",
+    "NPM.md",
+    "NodeJS.md",
+    "JSX.md",
+    "Untitled.canvas",
     "ArrowFunctions.md",
     "Array.md",
     "html.md",
-    "React JS.md",
     "ExpressJS.md",
     "Event Listeners.md",
-    "Javascript.md",
     "EJS.md",
-    "Untitled.canvas",
     "body-parser.md",
     "Middleware.md",
     "Untitled",
     "API.md",
-    "NPM.md",
-    "NodeJS.md",
     "JSON.md",
     "Terminal and Bash.md",
     "tailwind css.md",

@@ -1,4 +1,4 @@
-[[!jQuery]] [[html]] [[css]] [[NPM]]
+[[!jQuery]] [[html]] [[css]]
 
 
 ```
