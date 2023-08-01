@@ -1,6 +1,6 @@
 [[Javascript]] [[css]]
 
-Input forms with [[ExpressJS]]
+#Input forms with [[ExpressJS]]
 ```
 <form action="index.html" method='post'>
 	<input type='text' name='num1' paceholder='First Number'

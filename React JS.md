@@ -1,5 +1,5 @@
-`npx create-react-app`
-React is a [[Javascript]] framework. It uses [[NPM]] and [[NodeJS]] to run locally. You can use many [[Middleware]] packages and is known for its [[DOM manipulation methods]]
+[[NodeJS]] #NPM i react
+React is a [[Javascript]] framework.
 
 Every component updates asynchronously from each other component.
 
@@ -7,12 +7,34 @@ Vocab words:
 #jsx #props #styling #declarative_Programming #Components #Virtural_Dom #State #Babel #Container #Hooks #useState #Destructuring #Spread_Operator #MapAndFilter #import #expert
 
 `ReactDOM.render(what, where);
-`ReactDOM.render(<h1>Hello</h1>, document.getElementById('root'));
+`ReactDOM.render(<h1>Hello</h1>
+``,document.getElementById('root'));
 
-How is a #component built?
 
-React combines [[html]] and [[Javascript]] to update information on the page 
+#Components Component example
+```
+function Card(props){
+return(
+	<div>
+		<h2>{props.name}</h2>
+		<img src={props.img} alt="avatar_img" />
+		<p>{props.email}</p>
+	</div>
+)
+}
+```
+```
+<Card
+	name="TempName"
+	img="URL_HERE"
+	tel="(888) 888-888"
+	email="Tempemail@gmail.com"
+	/>
+```
 
 React takes a declarative approach, you define the desired target state and react does the heavy lifting. Unlike vanilla JavaScript that requires you to everything step-by-step.
 
 Look at [[JSX]]
+#props Is short for the properties of an object with multiple key value pairs.  props is the object that is sent over
+
+Known for its [[DOM manipulation methods]] and takes a #declarative approach
