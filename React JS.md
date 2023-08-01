@@ -14,3 +14,5 @@ How is a #component built?
 React combines [[html]] and [[Javascript]] to update information on the page 
 
 React takes a declarative approach, you define the desired target state and react does the heavy lifting. Unlike vanilla JavaScript that requires you to everything step-by-step.
+
+Look at [[JSX]]
