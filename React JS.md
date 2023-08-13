@@ -32,6 +32,9 @@ return(
 	/>
 ```
 
+React takes a declarative approach, you define the desired target state and react does the heavy lifting. Unlike vanilla JavaScript that requires you to everything step-by-step.
+
+Look at [[JSX]]
 #props Is short for the properties of an object with multiple key value pairs.  props is the object that is sent over
 
 Known for its [[DOM manipulation methods]] and takes a #declarative approach
