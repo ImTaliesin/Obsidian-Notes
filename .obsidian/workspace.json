@@ -65,8 +65,8 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#declarative_Programming",
-                "matchingCase": false,
+                "query": "react",
+                "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
@@ -174,13 +174,13 @@
   },
   "active": "7aab129c12472c90",
   "lastOpenFiles": [
+    "ArrowFunctions.md",
     "React JS.md",
+    "JSX.md",
     "Javascript.md",
     "NPM.md",
     "NodeJS.md",
-    "JSX.md",
     "Untitled.canvas",
-    "ArrowFunctions.md",
     "Array.md",
     "html.md",
     "ExpressJS.md",
