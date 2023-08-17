@@ -77,3 +77,29 @@ console.log(adminUser)
 - `concat()`  => [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat?v=b](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat?v=b)
 - `slice()`  => [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)
 - `splice()`  => [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
+
+```
+import Todo from './Todo';
+const DUMMY_TODOS = [
+    'Learn React',
+    'Practice React',
+    'Profit!'
+];
+ 
+// don't change the Component name "App"
+export default function App() {
+    return (
+        <ul>
+          {DUMMY_TODOS.map(todo => 
+          <Todo words={todo} 
+          />
+          )}
+        </ul>
+    );
+}
+
+---------------
+export default function Todo(props) {
+    return <li>{props.words}</li>;
+}
+```

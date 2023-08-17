@@ -65,7 +65,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "react",
+                "query": "key",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -172,16 +172,16 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "7aab129c12472c90",
+  "active": "392d3255d0bf707d",
   "lastOpenFiles": [
-    "ArrowFunctions.md",
+    "Array.md",
     "React JS.md",
+    "ArrowFunctions.md",
     "JSX.md",
     "Javascript.md",
     "NPM.md",
     "NodeJS.md",
     "Untitled.canvas",
-    "Array.md",
     "html.md",
     "ExpressJS.md",
     "Event Listeners.md",

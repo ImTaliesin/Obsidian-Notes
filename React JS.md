@@ -140,3 +140,52 @@ How to make page not default on a submit.
    	event.preventDefault();
    };
 ````
+
+render from an array
+```
+	const expenses = [
+		{
+			id: 'e1',
+			title: 'Toilet Paper',
+			amount: 94.12,
+			date: new Date(2020, 7, 14),
+		},
+		{
+			id: 'e2',
+			title: 'Taco Bell',
+			amount: 6969.69,
+			date: new Date(2021, 2, 12),
+		},
+		{
+			id: 'e3',
+			title: 'Car Insurance',
+			amount: 294.67,
+			date: new Date(2021, 2, 28),
+		},
+		{
+			id: 'e4',
+			title: 'New Desk (Wooden)',
+			amount: 450,
+			date: new Date(2021, 5, 12),
+		},
+	];
+				<ExpenseItem
+                    title={props.items[0].title}
+                    amount={props.items[0].amount}
+                    date={props.items[0].date} />
+                <ExpenseItem
+                    title={props.items[1].title}
+                    amount={props.items[1].amount}
+                    date={props.items[1].date} />
+                <ExpenseItem
+                    title={props.items[2].title}
+                    amount={props.items[2].amount}
+                    date={props.items[2].date} />
+                <ExpenseItem
+                    title={props.items[3].title}
+                    amount={props.items[3].amount}
+                    date={props.items[3].date} 
+                />
+```
+
+A #key is a prop you can add to any component to help react identify each item. Key needs to be a unique value. 
