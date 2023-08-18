@@ -1,10 +1,12 @@
 [[NodeJS]] #NPM i react
 React is a [[Javascript]] framework.
 
-Every component updates asynchronously from each other component.
+Every #component updates asynchronously from each other component.
+
+"Lifting the state up means that it moves data from a child component to a parent component"
 
 Vocab words:
-#jsx #props #styling #declarative_Programming #Components #Virtural_Dom #State #Babel #Container #Hooks #useState #Destructuring #Spread_Operator #MapAndFilter #import #expert
+#jsx #props #styling #declarative_Programming #Virtural_Dom #State #Babel #Container #Hooks #useState #Destructuring #Spread_Operator #MapAndFilter #import #expert
 
 `ReactDOM.render(what, where);
 `ReactDOM.render(<h1>Hello</h1>
@@ -39,6 +41,7 @@ Look at [[JSX]]
 
 Known for its [[DOM manipulation methods]] and takes a #declarative approach
 
+<<<<<<< Updated upstream
 ```
 const [enteredTitle, setEnteredTitle] = useState('');
 
@@ -189,3 +192,5 @@ render from an array
 ```
 
 A #key is a prop you can add to any component to help react identify each item. Key needs to be a unique value. 
+=======
+>>>>>>> Stashed changes
