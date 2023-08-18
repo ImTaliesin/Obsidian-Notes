@@ -65,8 +65,13 @@
             "state": {
               "type": "search",
               "state": {
+<<<<<<< Updated upstream
                 "query": "key",
                 "matchingCase": true,
+=======
+                "query": "tag:#Components",
+                "matchingCase": false,
+>>>>>>> Stashed changes
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
