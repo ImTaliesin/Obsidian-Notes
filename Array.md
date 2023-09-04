@@ -20,29 +20,6 @@ function transformToObjects(numberArray) {
 //output: [{val: 1}, {val: 2}, {val: 3}]
 ```
 
-#Destructure an array
-```
-const [firstName, lastName] = ["Talie", "Sin"];
-console.log(firstName)
-```
-#Destructure an javascript item. The variable names have to be the same as the item names inside
-```
-const {name, age} = {
-	name: "Taliesin"
-	age: 23
-}
-```
-Alternatively if you didnt want to have to use the item name, you can assign it like this:
-```
-const {name: userName, age} = {
-	name: "Taliesin"
-	age: 23
-}
-//console.log(userName)
-//output: Taliesin
-```
-
-
 ```
 function storeOrder({id, currency}) {
 localStorage.setItem('id', id);
@@ -103,3 +80,24 @@ export default function Todo(props) {
     return <li>{props.words}</li>;
 }
 ```
+
+#Destructure an array
+```
+const [firstName, lastName] = ["Talie", "Sin"];
+console.log(firstName)
+```
+#Destructure an javascript item. The variable names have to be the same as the item names inside
+```
+const {name, age} = {
+	name: "Taliesin"
+	age: 23
+}
+```
+Alternatively if you didnt want to have to use the item name, you can assign it like this:
+```
+const {name: userName, age} = {
+	name: "Taliesin"
+	age: 23
+}
+//console.log(userName)
+//output: Taliesin
