@@ -4,3 +4,6 @@ JSX in depth:
 JSX #syntax is used in [[Javascript]] and [[React JS]]
 
 
+#ternary operators is an If-> then statement simplified.
+`{ num===7 ? 'winner' : "loser" }`
+
