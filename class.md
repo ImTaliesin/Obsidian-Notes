@@ -1,4 +1,4 @@
-[[Typescript]] classes
+[[Typescript]] classes can be their own [[Type]]s
 ```
 class AccountingDepartment extends Department {
 	private lastReport: string;

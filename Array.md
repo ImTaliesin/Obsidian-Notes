@@ -7,7 +7,7 @@ cosnt editedHobbies = hobbies.map((item) => item + '!')
 //["Sports!", "Cooking!", "Gaming!"]
 
 ```
-
+[[Typescript]] [[Python]]
 You can turn the output into a [[Javascript]] object #KeyValuePair too by doing this:
 ```
 function transformToObjects(numberArray) {

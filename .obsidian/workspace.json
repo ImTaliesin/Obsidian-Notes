@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Type.md",
+                "file": "Typescript.md",
                 "mode": "source",
                 "source": false
               }
@@ -87,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Type.md",
+                "file": "Typescript.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Type.md",
+                "file": "Typescript.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Type.md"
+                "file": "Typescript.md"
               }
             }
           },
@@ -169,15 +169,24 @@
   },
   "active": "4ff6e1a92a6c79c6",
   "lastOpenFiles": [
-    "Interface.md",
-    "Type.md",
-    "Resources.md",
+    "html.md",
+    "tailwind css.md",
+    "Svelte.md",
     "class.md",
-    "Array.md",
-    "Typescript.md",
-    "Javascript.md",
-    "Untitled 2.canvas",
+    "NPM.md",
     "2023-12-19.md",
+    "Cards/README.md",
+    "Array.md",
+    "API.md",
+    "Typescript.md",
+    "MongoDB.md",
+    "Javascript.md",
+    "NextJS.md",
+    "ArrowFunctions.md",
+    "Type.md",
+    "Interface.md",
+    "Resources.md",
+    "Untitled 2.canvas",
     "Untitled 1.canvas",
     "NodeJS.md",
     "React JS.md",

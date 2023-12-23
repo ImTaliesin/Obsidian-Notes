@@ -1,4 +1,6 @@
-[[Javascript]] [[React JS]]
+[[Javascript]] [[React JS]] 
+
+Typescript has trouble understanding [[html]] types and often needs bypassing
 
 Compiler options, best default "Lib" section is : [
 	"es6"

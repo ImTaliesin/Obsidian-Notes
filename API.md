@@ -1,6 +1,1 @@
-[[JSON]]
-
-Key value pair
-
-Paramaters
-
+[[Javascript]] [[Python]]

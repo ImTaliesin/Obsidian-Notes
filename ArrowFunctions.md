@@ -1,4 +1,4 @@
-Very useful [[Javascript]] functions, used often in [[React JS]]
+Very useful [[Javascript]] functions, used often in [[React JS]] [[Typescript]] 
 #AnonymousFunction 
 ``() =>
 

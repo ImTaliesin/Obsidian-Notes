@@ -1,4 +1,4 @@
-[[!jQuery]] [[html]] [[css]]
+[[!jQuery]] [[html]] [[css]] [[NextJS]] [[MongoDB]]
 
 
 ```
