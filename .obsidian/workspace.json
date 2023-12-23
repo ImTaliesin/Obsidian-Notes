@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "class.md",
+                "file": "Interface.md",
                 "mode": "source",
                 "source": false
               }
@@ -87,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "class.md",
+                "file": "Interface.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "class.md",
+                "file": "Interface.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "class.md"
+                "file": "Interface.md"
               }
             }
           },
@@ -170,6 +170,7 @@
   "active": "4ff6e1a92a6c79c6",
   "lastOpenFiles": [
     "class.md",
+    "Interface.md",
     "Resources.md",
     "Array.md",
     "Typescript.md",

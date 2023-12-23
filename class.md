@@ -1,4 +1,4 @@
-
+[[Typescript]] classes
 ```
 class AccountingDepartment extends Department {
 	private lastReport: string;
