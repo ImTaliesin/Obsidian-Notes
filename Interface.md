@@ -1,6 +1,6 @@
-Interfaces don't get compiled, they are only used for developers to have a cleaner code environment and to make sure that your code follows your own guidelines. 
+Interfaces cant be instantiated and don't get compiled , they are only used for developers to have a cleaner code environment and to make sure that your code follows your own guidelines. 
 
-[[Typescript]] interfaces are similar to a custom #type but seems clearer because you want to define a custom object as such. You can implement interfaces in classes. Interfaces can be used as a contract that a [[class]] must adhere to.
+[[Typescript]] interfaces are similar to a custom [[Type]] but seems clearer because you want to define a custom object as such. You can implement interfaces in classes. Interfaces can be used as a contract that a [[class]] must adhere to.
 
 Interfaces are often used to share functionality amongst different classes. you can use an interface as a type on a const or variable that stores a class type that is based on the interface type.
 
@@ -50,5 +50,17 @@ the #
 iterface Named{
 	readonly name: string;
 	outputname?: string; //the ? means that the type that uses 'Named', the outputname is optional
+}
+```
+
+
+```
+interface ErrorContainer {
+	[prop: string]
+}
+
+const errorBag: ErrorContainer = {
+	email: 'Not a valid email!'\
+	username: 'Must start with a capital character!'
 }
 ```
