@@ -11,70 +11,15 @@
             "id": "4ff6e1a92a6c79c6",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
-            }
-          },
-          {
-            "id": "3dda6768e21b8432",
-            "type": "leaf",
-            "state": {
               "type": "markdown",
               "state": {
-                "file": "Typescript.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "b0fd3f779d842726",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Array.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "875c835b9424101f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Resources.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "13c22b8b45ada54b",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.4.5"
-              }
-            }
-          },
-          {
-            "id": "8b1c3504b5290511",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Javascript.md",
+                "file": "class.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -142,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Typescript.md",
+                "file": "class.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -159,7 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Typescript.md",
+                "file": "class.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -182,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Typescript.md"
+                "file": "class.md"
               }
             }
           },
@@ -222,8 +167,11 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "3dda6768e21b8432",
+  "active": "4ff6e1a92a6c79c6",
   "lastOpenFiles": [
+    "class.md",
+    "Resources.md",
+    "Array.md",
     "Typescript.md",
     "Javascript.md",
     "Untitled 2.canvas",
@@ -231,8 +179,6 @@
     "Untitled 1.canvas",
     "NodeJS.md",
     "React JS.md",
-    "Array.md",
-    "JSX.md",
-    "Resources.md"
+    "JSX.md"
   ]
 }
