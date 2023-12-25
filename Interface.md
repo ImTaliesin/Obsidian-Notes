@@ -55,8 +55,10 @@ iterface Named{
 
 
 ```
+//This makes an interface class of an object. then you need to make the object below it.
+
 interface ErrorContainer {
-	[prop: string]
+	[prop: string]: string
 }
 
 const errorBag: ErrorContainer = {
