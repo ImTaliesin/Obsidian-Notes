@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Generics.md",
+                "file": "Decorators.md",
                 "mode": "source",
                 "source": false
               }
@@ -87,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Generics.md",
+                "file": "Decorators.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Generics.md",
+                "file": "Decorators.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Generics.md"
+                "file": "Decorators.md"
               }
             }
           },
@@ -169,13 +169,14 @@
   },
   "active": "4ff6e1a92a6c79c6",
   "lastOpenFiles": [
-    "Typescript.md",
+    "class.md",
+    "Decorators.md",
     "Generics.md",
+    "Typescript.md",
     "Interface.md",
     "html.md",
     "tailwind css.md",
     "Svelte.md",
-    "class.md",
     "NPM.md",
     "2023-12-19.md",
     "Cards/README.md",

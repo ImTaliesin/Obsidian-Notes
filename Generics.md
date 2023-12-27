@@ -1,4 +1,4 @@
-Flexible & reusable code
+Flexible & reusable code [[Type]] [[Typescript]]
 
 ```
 const names: Array<string> = []; //this is the same thing as string[]
