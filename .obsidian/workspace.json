@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "80df61f758860172",
+        "id": "cf814c6dc7914d31",
         "type": "tabs",
         "children": [
           {
-            "id": "4ff6e1a92a6c79c6",
+            "id": "b64996d771680307",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Decorators.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "graph",
+              "state": {}
             }
           }
         ]
@@ -87,7 +83,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Decorators.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +99,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Decorators.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,9 +120,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Decorators.md"
-              }
+              "state": {}
             }
           },
           {
@@ -145,7 +137,9 @@
             "state": {
               "type": "all-properties",
               "state": {
-                "sortOrder": "frequency"
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
               }
             }
           }
@@ -167,8 +161,10 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "4ff6e1a92a6c79c6",
+  "active": "b64996d771680307",
   "lastOpenFiles": [
+    "Prisma.md",
+    "Ferb/node_modules/@typescript-eslint/eslint-plugin/README.md",
     "class.md",
     "Decorators.md",
     "Generics.md",
