@@ -35,4 +35,3 @@ There are several ways to control caching
 - On-Demand
 	- Forcibly purge a cached reponse
 - Disable Caching
--
