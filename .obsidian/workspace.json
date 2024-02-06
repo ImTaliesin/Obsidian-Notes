@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Generics.md",
+                "file": "Vercel.md",
                 "mode": "source",
                 "source": false
               }
@@ -87,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Generics.md",
+                "file": "Vercel.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Generics.md",
+                "file": "Vercel.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Generics.md"
+                "file": "Vercel.md"
               }
             }
           },
@@ -171,11 +171,12 @@
   },
   "active": "b64996d771680307",
   "lastOpenFiles": [
+    "Generics.md",
+    "Vercel.md",
     "Typescript React code snippets.md",
     "Ref.md",
     "Props.md",
     "NextJS.md",
-    "Generics.md",
     "React JS.md",
     "Decorators.md",
     "Typescript.md",
@@ -197,7 +198,6 @@
     "Type.md",
     "Resources.md",
     "Untitled 2.canvas",
-    "Untitled 1.canvas",
-    "NodeJS.md"
+    "Untitled 1.canvas"
   ]
 }
