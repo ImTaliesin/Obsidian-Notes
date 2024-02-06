@@ -11,8 +11,12 @@
             "id": "b64996d771680307",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Generics.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -83,6 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Generics.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,6 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Generics.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -120,7 +126,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Generics.md"
+              }
             }
           },
           {
@@ -163,15 +171,20 @@
   },
   "active": "b64996d771680307",
   "lastOpenFiles": [
+    "Typescript React code snippets.md",
+    "Ref.md",
+    "Props.md",
+    "NextJS.md",
+    "Generics.md",
+    "React JS.md",
+    "Decorators.md",
+    "Typescript.md",
+    "tailwind css.md",
     "Prisma.md",
     "Ferb/node_modules/@typescript-eslint/eslint-plugin/README.md",
     "class.md",
-    "Decorators.md",
-    "Generics.md",
-    "Typescript.md",
     "Interface.md",
     "html.md",
-    "tailwind css.md",
     "Svelte.md",
     "NPM.md",
     "2023-12-19.md",
@@ -180,14 +193,11 @@
     "API.md",
     "MongoDB.md",
     "Javascript.md",
-    "NextJS.md",
     "ArrowFunctions.md",
     "Type.md",
     "Resources.md",
     "Untitled 2.canvas",
     "Untitled 1.canvas",
-    "NodeJS.md",
-    "React JS.md",
-    "JSX.md"
+    "NodeJS.md"
   ]
 }
