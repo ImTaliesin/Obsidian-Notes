@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Vercel.md",
+                "file": "NextJS.md",
                 "mode": "source",
                 "source": false
               }
@@ -87,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Vercel.md",
+                "file": "NextJS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Vercel.md",
+                "file": "NextJS.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Vercel.md"
+                "file": "NextJS.md"
               }
             }
           },
@@ -171,8 +171,16 @@
   },
   "active": "b64996d771680307",
   "lastOpenFiles": [
-    "Generics.md",
+    "Pasted image 20240207140952.png",
+    "Pasted image 20240207123809.png",
+    "Pasted image 20240207123108.png",
+    "OAuth.md",
+    "Pasted image 20240206161629.png",
+    "NextUI.md",
+    "DOM manipulation methods.md",
+    "Prisma.md",
     "Vercel.md",
+    "Generics.md",
     "Typescript React code snippets.md",
     "Ref.md",
     "Props.md",
@@ -181,7 +189,6 @@
     "Decorators.md",
     "Typescript.md",
     "tailwind css.md",
-    "Prisma.md",
     "Ferb/node_modules/@typescript-eslint/eslint-plugin/README.md",
     "class.md",
     "Interface.md",
@@ -193,10 +200,6 @@
     "Array.md",
     "API.md",
     "MongoDB.md",
-    "Javascript.md",
-    "ArrowFunctions.md",
-    "Type.md",
-    "Resources.md",
     "Untitled 2.canvas",
     "Untitled 1.canvas"
   ]
