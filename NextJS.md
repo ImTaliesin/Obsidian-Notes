@@ -18,7 +18,10 @@ Next implements caching in several locations and they can lead to unexpected beh
 - Full Route Cache
 	- **_At build time_**, Next decides if your route is _static_ or _dynamic_. If it is static, the page is rendered and the result is stored. In production, users are given this pre-rendered result. 
 
+
+![[Pasted image 20240209135900.png]]
 What makes a page dynamic?
+```
 - Calling a dynamic function or refencing a dynamic variable when your route renders.
 	- cookies.set()/cookies.delete()
 	- useSearchParams()/searchParams prop
@@ -27,6 +30,7 @@ What makes a page dynamic?
 	- export const revalidate = 0
 - Calling 'fetch and optng out of caching of the responsr
 	- fetch( '...', {next: { revalidate: 0 }});
+```
 
 When/How to keep pages static
 There are several ways to control caching

@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "cf814c6dc7914d31",
+        "id": "87095ccf53e9afa0",
         "type": "tabs",
         "children": [
           {
-            "id": "b64996d771680307",
+            "id": "65fc3669a3287a3f",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -169,8 +169,11 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "b64996d771680307",
+  "active": "65fc3669a3287a3f",
   "lastOpenFiles": [
+    "Pasted image 20240209135900.png",
+    "dynamic.md",
+    "NextJS.md",
     "Pasted image 20240207140952.png",
     "Pasted image 20240207123809.png",
     "Pasted image 20240207123108.png",
@@ -184,7 +187,6 @@
     "Typescript React code snippets.md",
     "Ref.md",
     "Props.md",
-    "NextJS.md",
     "React JS.md",
     "Decorators.md",
     "Typescript.md",
@@ -199,7 +201,6 @@
     "Cards/README.md",
     "Array.md",
     "API.md",
-    "MongoDB.md",
     "Untitled 2.canvas",
     "Untitled 1.canvas"
   ]
