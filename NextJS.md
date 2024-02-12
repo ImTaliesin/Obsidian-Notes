@@ -94,3 +94,105 @@ export default function Profile() {
 	}
 }
 ```
+
+Here is a standard forum component that can be broken down and reused.
+```
+'use server';
+import { z } from 'zod';
+import { auth } from '@/app/auth';
+import type { Topic } from '@prisma/client';
+import { redirect } from 'next/navigation';
+import { paths } from '@/paths';
+import { db } from '@/db';
+import { revalidatePath } from 'next/cache';
+
+const createTopicSchema = z.object({
+	name: z
+		.string()
+		.min(3)
+		.regex(/^[a-zA-Z-]+$/, {
+			message: 'Only letters and hyphens are allowed',
+		}), //message needed on regex because it is a custom error message
+	description: z.string().min(10),
+});
+
+interface CreateTopicFormState {
+	errors: {
+		name?: string[];
+		description?: string[];
+		_form?: string[]; //for errors that are not field specific
+	};
+}
+
+export async function createTopic(
+	formState: CreateTopicFormState,
+	formData: FormData
+): Promise<CreateTopicFormState> {
+	const result = createTopicSchema.safeParse({
+		name: formData.get('name') as string,
+		description: formData.get('description') as string,
+	});
+
+	if (!result.success) {
+		console.log(result.error.flatten().fieldErrors);
+		return { errors: result.error.flatten().fieldErrors };
+	}
+
+	const session = await auth();
+	if (!session || !session.user) {
+		return {
+			errors: { _form: ['You must be signed in to create a topic'] },
+		};
+	}
+
+	let topic: Topic;
+	try {
+		topic = await db.topic.create({
+			data: {
+				slug: result.data.name,
+				description: result.data.description,
+			}
+		});
+	} catch (error: unknown) {
+		if (error instanceof Error) {
+			return {
+				errors: { _form: [error.message] },
+			};
+		} else {
+			return {
+				errors: { _form: ['An unknown error occurred'] },
+			};
+		}
+	}
+
+	revalidatePath('/');
+	redirect(paths.topicShow(topic.slug));
+}
+
+```
+
+Code for a form-button module, includes loading boolean to make a spinner icon.
+```
+'use client';
+import { useFormStatus } from 'react-dom';
+import { Button } from '@nextui-org/react';
+
+interface FormButtonProps {
+	children: React.ReactNode;
+}
+
+export default function FormButton({ children }: FormButtonProps) {
+	const { pending } = useFormStatus();
+
+	return (
+		<Button
+			type='submit'
+			color='primary'
+			variant='flat'
+			isLoading={pending}>
+			{children}
+		</Button>
+	);
+}
+
+```
