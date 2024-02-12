@@ -24,15 +24,14 @@ function add (a: Combinable, b: Combinable:){
 ```
 const fetchedUserData = {
 	id = 'u1',
-	name = 'Max'
-	job = { title: 'CEO', description: 'My own company'}
+	name = 'Talie'
+	job = { title: 'Dev', description: 'I make shit'}
 }
 
 console.log(fetchedUserData?.job?.title); //The function checks to see if user data exists, if so check if job exists, if so get the title.
 ```
 
 ```
-
 const userInput = null;
 const storedData = userInput ?? DEFAULT //Double question marks means if data is null, then do ->
 ```
