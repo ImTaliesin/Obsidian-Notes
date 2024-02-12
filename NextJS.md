@@ -35,3 +35,67 @@ There are several ways to control caching
 - On-Demand
 	- Forcibly purge a cached reponse
 - Disable Caching
+
+When handling forms, you can use the library zod to help with error handling and checking validity
+```
+'use server'
+import { z } from 'zod';
+
+const createTopicSchema = z.object({
+	name: z
+		.string()
+		.min(3)
+		.regex(/^[a-z-]+$/, {
+			message: 'Only lowercase letters and hyphens are allowed',
+		}),
+	description: z.string().min(10),
+});
+
+export async function createTopic(formData: FormData) {
+	const result = createTopicSchema.safeParse({
+		name: formData.get('name') as string,
+		description: formData.get('description') as string,
+   });
+
+	if (!result.success) {
+		console.log(result.error.flatten().fieldErrors);
+   } //flatten() is from zod to shorten the errors.
+   
+}
+
+```
+
+when using useFormState from 'react-dom' you will get an error when making your formstate.
+```
+const [formState,action] = useFormState(serverArction, ___ )
+```
+![[Pasted image 20240210205408.png]]
+
+To fix this error, go into your server action file to make a new interface, add a formState param with that interface, and use a promise with the form state. This turns the function asynchronous 
+```
+
+interface CreateTopicFormState {
+	errors: {
+		name?: string[];
+		description?: string[];
+	};
+}
+
+export async function createTopic(
+	formState: CreateTopicFormState,
+	formData: FormData,
+): Promise<CreateTopicFormState> {
+	const result = createTopicSchema.safeParse({
+		name: formData.get('name') as string,
+		description: formData.get('description') as string,
+	});
+
+	if (!result.success) {
+		console.log(result.error.flatten().fieldErrors);
+		return { errors: result.error.flatten().fieldErrors };
+	}
+	return {
+		errors: {},
+	};
+}
+```
