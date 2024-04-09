@@ -4,22 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "80df61f758860172",
+        "id": "87095ccf53e9afa0",
         "type": "tabs",
         "children": [
           {
-            "id": "4ff6e1a92a6c79c6",
+            "id": "65fc3669a3287a3f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "NextJS.md",
+                "file": "Javascript.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c2d81c9a3c56b272",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "tailwind css.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -70,7 +83,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "d2eb0c01751dfe73",
@@ -86,7 +100,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "NextJS.md",
+                "file": "tailwind css.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +117,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "NextJS.md",
+                "file": "tailwind css.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +140,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "NextJS.md"
+                "file": "tailwind css.md"
               }
             }
           },
@@ -155,8 +169,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -169,40 +182,40 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "4ff6e1a92a6c79c6",
+  "active": "c2d81c9a3c56b272",
   "lastOpenFiles": [
-    "dynamic.md",
-    "Vercel.md",
-    "Prisma.md",
+    "cn().md",
+    "Pasted image 20240210205408.png",
+    "tailwind css.md",
+    "Untitled 3.canvas",
+    "NextJS.md",
     "Pasted image 20240209135900.png",
+    "dynamic.md",
     "Pasted image 20240207140952.png",
     "Pasted image 20240207123809.png",
     "Pasted image 20240207123108.png",
-    "Pasted image 20240206161629.png",
     "OAuth.md",
+    "Pasted image 20240206161629.png",
     "NextUI.md",
-    "Pasted image 20240210205408.png",
-    "nexst.md",
-    "NextJS.md",
-    "NodeJS.md",
-    "Ref.md",
-    "body-parser.md",
+    "DOM manipulation methods.md",
+    "Prisma.md",
+    "Vercel.md",
+    "Generics.md",
     "Typescript React code snippets.md",
-    "Typescript.md",
+    "Ref.md",
     "Props.md",
     "React JS.md",
     "Decorators.md",
+    "Typescript.md",
+    "Ferb/node_modules/@typescript-eslint/eslint-plugin/README.md",
     "class.md",
-    "Generics.md",
     "Interface.md",
     "html.md",
-    "tailwind css.md",
     "Svelte.md",
     "NPM.md",
     "2023-12-19.md",
     "Cards/README.md",
     "Array.md",
-    "API.md",
     "Untitled 2.canvas",
     "Untitled 1.canvas"
   ]
