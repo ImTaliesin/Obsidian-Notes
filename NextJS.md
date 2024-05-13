@@ -1,4 +1,9 @@
 [[Typescript]] [[MongoDB]]
+If youre using useRouter(), make sure its imported from next/navigation, router refresh reruns the route you're on and refreshes it client side.
+```
+<UploadButton endpoint="imageUploader" onClientUploadComplete={() => {router.refresh}} />
+```
+when upload is completed, it refreshes the page for the user.
 
 When you first start up a project:
 ![[Pasted image 20240207123108.png]]

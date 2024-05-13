@@ -30,9 +30,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "eee78ae44192a65e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "NextJS.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -61,7 +73,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "schema",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -83,8 +95,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "d2eb0c01751dfe73",
@@ -100,7 +111,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "tailwind css.md",
+                "file": "NextJS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -117,7 +128,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "tailwind css.md",
+                "file": "NextJS.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -140,7 +151,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "tailwind css.md"
+                "file": "NextJS.md"
               }
             }
           },
@@ -182,13 +193,18 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "c2d81c9a3c56b272",
+  "active": "eee78ae44192a65e",
   "lastOpenFiles": [
+    "NextJS.md",
+    "Database.md",
+    "css.md",
+    "tailwind css.md",
+    "Javascript.md",
+    "onchange.md",
+    "Event Listeners.md",
     "cn().md",
     "Pasted image 20240210205408.png",
-    "tailwind css.md",
     "Untitled 3.canvas",
-    "NextJS.md",
     "Pasted image 20240209135900.png",
     "dynamic.md",
     "Pasted image 20240207140952.png",
@@ -212,10 +228,6 @@
     "Interface.md",
     "html.md",
     "Svelte.md",
-    "NPM.md",
-    "2023-12-19.md",
-    "Cards/README.md",
-    "Array.md",
     "Untitled 2.canvas",
     "Untitled 1.canvas"
   ]
