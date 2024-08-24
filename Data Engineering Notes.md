@@ -1,114 +1,10 @@
 [[Database]]
-
-Important vocab to read up on: 
-Relational Table, data lake, data warehouse,  data lakehouse.
-
+## Vocab:
+### Relational Table, data lake, data warehouse,  data lakehouse.
 
 
-## Data stores
+# Data Engineering w/ Azure
 
-Organizations typically store data in structured, semi-structured, or unstructured format to record details of entities (for example, customers and products), specific events (such as sales transactions), or other information in documents, images, and other formats. The stored data can then be retrieved for analysis and reporting later.
-
-There are two broad categories of data store in common use:
-
-- File stores
-- Databases
-
-## Delimited text files
-
-Data is often stored in plain text format with specific field delimiters and row terminators. The most common format for delimited data is comma-separated values (CSV). Delimited text is a good choice for structured data that needs to be accessed by a wide range of applications and services in a human-readable format.
-
-## JavaScript Object Notation (JSON)
-
-JSON is a ubiquitous format in which a hierarchical document schema is used to define data entities (objects) that have multiple attributes. Each attribute might be an object (or a collection of objects); making JSON a flexible format that's good for both structured and semi-structured data.
-
-```
-{
-  "customers":
-  [
-    {
-      "firstName": "Joe",
-      "lastName": "Jones",
-      "contact":
-      [
-        {
-          "type": "home",
-          "number": "555 123-1234"
-        },
-        {
-          "type": "email",
-          "address": "joe@litware.com"
-        }
-      ]
-    },
-    {
-      "firstName": "Samir",
-      "lastName": "Nadoy",
-      "contact":
-      [
-        {
-          "type": "email",
-          "address": "samir@northwind.com"
-        }
-      ]
-    }
-  ]
-}
-```
-
-
-
-## Extensible Markup Language (XML)
-
-XML is a human-readable data format that was popular in the 1990s and 2000s. It's largely been superseded by the less verbose JSON format, but there are still some systems that use XML to represent data. XML uses _tags_ enclosed in angle-brackets (**<../>**) to define _elements_ and _attributes_, as shown in this example:
-
-XMLCopy
-
-```
-<Customers>
-  <Customer name="Joe" lastName="Jones">
-    <ContactDetails>
-      <Contact type="home" number="555 123-1234"/>
-      <Contact type="email" address="joe@litware.com"/>
-    </ContactDetails>
-  </Customer>
-  <Customer name="Samir" lastName="Nadoy">
-    <ContactDetails>
-      <Contact type="email" address="samir@northwind.com"/>
-    </ContactDetails>
-  </Customer>
-</Customers>
-```
-
-
-
-## Binary Large Object (BLOB)
-
-Ultimately, all files are stored as binary data (1's and 0's), but in the human-readable formats discussed above, the bytes of binary data are mapped to printable characters (typically through a character encoding scheme such as ASCII or Unicode). Some file formats however, particularly for unstructured data, store the data as raw binary that must be interpreted by applications and rendered. Common types of data stored as binary include images, video, audio, and application-specific documents.
-## Analytical Data Processing
-
-Analytical data processing typically uses read-only (or read-_mostly_) systems that store vast volumes of historical data or business metrics. Analytics can be based on a snapshot of the data at a given point in time, or a series of snapshots.
-
-The specific details for an analytical processing system can vary between solutions, but a common architecture for enterprise-scale analytics looks like this:
-
-![Diagram showing an analytical database architecture with the numbered elements described below.](https://learn.microsoft.com/en-us/training/wwl-data-ai/explore-core-data-concepts/media/analytical-processing.png)
-
-1. Operational data is extracted, transformed, and loaded (ETL) into a data lake for analysis.
-2. Data is loaded into a schema of tables - typically in a Spark-based _data lakehouse_ with tabular abstractions over files in the data lake, or a _data warehouse_ with a fully relational SQL engine.
-3. Data in the data warehouse may be aggregated and loaded into an online analytical processing (OLAP) model, or _cube_. Aggregated numeric values (_measures_) from fact tables are calculated for intersections of _dimensions_ from dimension tables. For example, sales revenue might be totaled by date, customer, and product.
-4. The data in the data lake, data warehouse, and analytical model can be queried to produce reports, visualizations, and dashboards.
-
-_Data lakes_ are common in large-scale data analytical processing scenarios, where a large volume of file-based data must be collected and analyzed.
-
-_Data warehouses_ are an established way to store data in a relational schema that is optimized for read operations – primarily queries to support reporting and data visualization. _Data Lakehouses_ are a more recent innovation that combine the flexible and scalable storage of a data lake with the relational querying semantics of a data warehouse. The table schema may require some denormalization of data in an OLTP data source (introducing some duplication to make queries perform faster).
-
-An OLAP model is an aggregated type of data storage that is optimized for analytical workloads. Data aggregations are across dimensions at different levels, enabling you to _drill up/down_ to view aggregations at multiple hierarchical levels; for example to find total sales by region, by city, or for an individual address. Because OLAP data is pre-aggregated, queries to return the summaries it contains can be run quickly.
-
-Different types of user might perform data analytical work at different stages of the overall architecture. For example:
-
-- Data scientists might work directly with data files in a data lake to explore and model data.
-- Data Analysts might query tables directly in the data warehouse to produce complex reports and visualizations.
-- Business users might consume pre-aggregated data in an analytical model in the form of reports or dashboards.
 
 # Azure Data Services
 
@@ -202,3 +98,76 @@ Data analysts can use Azure Data Explorer to query and analyze data that include
 ![Azure Purview logo.](https://learn.microsoft.com/en-us/training/wwl-data-ai/explore-roles-responsibilities-world-of-data/media/azure-purview.png) Microsoft Purview provides a solution for enterprise-wide data governance and discoverability. You can use Microsoft Purview to create a map of your data and track data lineage across multiple data sources and systems, enabling you to find trustworthy data for analysis and reporting.
 
 Data engineers can use Microsoft Purview to enforce data governance across the enterprise and ensure the integrity of data used to support analytical workloads.
+
+# How data exists in files
+## Delimited text files
+
+Data is often stored in plain text format with specific field delimiters and row terminators. The most common format for delimited data is comma-separated values (CSV). Delimited text is a good choice for structured data that needs to be accessed by a wide range of applications and services in a human-readable format.
+
+## JavaScript Object Notation (JSON)
+
+JSON is a ubiquitous format in which a hierarchical document schema is used to define data entities (objects) that have multiple attributes. Each attribute might be an object (or a collection of objects); making JSON a flexible format that's good for both structured and semi-structured data.
+
+```
+{
+  "customers":
+  [
+    {
+      "firstName": "Joe",
+      "lastName": "Jones",
+      "contact":
+      [
+        {
+          "type": "home",
+          "number": "555 123-1234"
+        },
+        {
+          "type": "email",
+          "address": "joe@litware.com"
+        }
+      ]
+    },
+    {
+      "firstName": "Samir",
+      "lastName": "Nadoy",
+      "contact":
+      [
+        {
+          "type": "email",
+          "address": "samir@northwind.com"
+        }
+      ]
+    }
+  ]
+}
+```
+
+
+
+## Extensible Markup Language (XML)
+
+XML is a human-readable data format that was popular in the 1990s and 2000s. It's largely been superseded by the less verbose JSON format, but there are still some systems that use XML to represent data. XML uses _tags_ enclosed in angle-brackets (**<../>**) to define _elements_ and _attributes_, as shown in this example:
+
+XMLCopy
+
+```
+<Customers>
+  <Customer name="Joe" lastName="Jones">
+    <ContactDetails>
+      <Contact type="home" number="555 123-1234"/>
+      <Contact type="email" address="joe@litware.com"/>
+    </ContactDetails>
+  </Customer>
+  <Customer name="Samir" lastName="Nadoy">
+    <ContactDetails>
+      <Contact type="email" address="samir@northwind.com"/>
+    </ContactDetails>
+  </Customer>
+</Customers>
+```
+
+
+
+## Binary Large Object (BLOB)
+
+Ultimately, all files are stored as binary data (1's and 0's), but in the human-readable formats discussed above, the bytes of binary data are mapped to printable characters (typically through a character encoding scheme such as ASCII or Unicode). Some file formats however, particularly for unstructured data, store the data as raw binary that must be interpreted by applications and rendered. Common types of data stored as binary include images, video, audio, and application-specific documents.
