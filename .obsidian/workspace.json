@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "NextJS.md",
+                "file": "Fullstack NextJS List.md",
                 "mode": "source",
                 "source": false
               }
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "NextJS.md",
+                "file": "Fullstack NextJS List.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "NextJS.md",
+                "file": "Fullstack NextJS List.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "NextJS.md"
+                "file": "Fullstack NextJS List.md"
               }
             }
           },
@@ -171,6 +171,8 @@
   },
   "active": "4ff6e1a92a6c79c6",
   "lastOpenFiles": [
+    "NextJS.md",
+    "Fullstack NextJS List.md",
     "dynamic.md",
     "Vercel.md",
     "Prisma.md",
@@ -183,7 +185,6 @@
     "NextUI.md",
     "Pasted image 20240210205408.png",
     "nexst.md",
-    "NextJS.md",
     "NodeJS.md",
     "Ref.md",
     "body-parser.md",
@@ -202,7 +203,6 @@
     "2023-12-19.md",
     "Cards/README.md",
     "Array.md",
-    "API.md",
     "Untitled 2.canvas",
     "Untitled 1.canvas"
   ]
