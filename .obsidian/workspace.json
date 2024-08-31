@@ -32,6 +32,18 @@
             }
           },
           {
+            "id": "a88abe7c49abf19e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Lake.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
             "id": "0c0427f39fc9c388",
             "type": "leaf",
             "state": {
@@ -68,7 +80,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -221,10 +233,11 @@
   },
   "active": "0c0427f39fc9c388",
   "lastOpenFiles": [
-    "Pasted image 20240830192309.png",
-    "Pasted image 20240830170607.png",
+    "Data Lake.md",
     "Data Engineering Notes.md",
     "SQL.md",
+    "Pasted image 20240830192309.png",
+    "Pasted image 20240830170607.png",
     "class.md",
     "NextJS.md",
     "drizzle.md",

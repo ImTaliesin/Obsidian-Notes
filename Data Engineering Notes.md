@@ -1,4 +1,4 @@
-[[Database]] [[SQL]]
+[[Database]] [[SQL]] [[Data Lake]]
 ## Vocab:
 ### Relational Table, data lake: data stored in files, data warehouse,  data lakehouse, data pipeline
 
