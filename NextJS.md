@@ -1,4 +1,4 @@
-[[Typescript]] [[MongoDB]]
+[[Typescript]] [[Prisma]] [[drizzle]]
 If youre using useRouter(), make sure its imported from next/navigation, router refresh reruns the route you're on and refreshes it client side.
 ```
 <UploadButton endpoint="imageUploader" onClientUploadComplete={() => {router.refresh}} />

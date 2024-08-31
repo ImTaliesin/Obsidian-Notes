@@ -1,4 +1,4 @@
-[[Javascript]] [[React JS]] 
+[[Javascript]] [[React JS]] [[drizzle]]
 
 Typescript has trouble understanding [[html]] types and often needs bypassing
 
