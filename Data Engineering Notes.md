@@ -1,8 +1,33 @@
-[[Database]] [[SQL]] [[Data Lake]]
+[[Database]] [[SQL]] [[Data Lake]] [[Apache Spark]] [[Delta Lake]]
 ## Vocab:
 ### Relational Table, data lake: data stored in files, data warehouse,  data lakehouse, data pipeline
 
 Azure Data Lake Storage Gen2 stores data in an HDFS-compatible file system hosted in Azure Storage.
+
+## SQL vs Python
+
+Use SQL when:
+
+1. Working with structured data that is already stored in a relational format or can be easily queried using SQL syntax. SQL is particularly good for querying data from Azure Synapse serverless SQL pools or lake databases.
+2. Performing simple transformations, aggregations, and filters on relatively small to medium sized datasets. SQL excels at these types of operations on structured data.
+3. You need to leverage SQL-specific features like stored procedures, views, or user-defined functions.
+4. Querying data directly from files in a data lake using OPENROWSET functions, especially for quick exploratory analysis.
+5. Creating external tables to provide a relational abstraction over file data.
+6. You want to use familiar SQL syntax and don't need the full power of a distributed computing framework.
+
+Use Python with Apache Spark when:
+
+1. Working with very large datasets that require distributed processing. Spark is designed for big data workloads.
+2. Performing complex transformations, machine learning tasks, or advanced analytics that go beyond simple SQL operations.
+3. You need to work with unstructured or semi-structured data formats like JSON or need more flexibility in data manipulation.
+4. Implementing end-to-end data pipelines that involve multiple steps of data cleansing, transformation, and analysis.
+5. You want to leverage Spark's ability to cache data in memory for iterative processing.
+6. Utilizing Spark's rich ecosystem of libraries for data science and machine learning tasks.
+7. You need more programmatic control and want to write custom logic using a full programming language.
+
+In many data engineering scenarios, a combination of both SQL and Spark may be used. For example, you might use Spark to perform initial data cleansing and complex transformations on raw data in a data lake, then save the results in a format that can be easily queried using SQL for reporting and analysis.
+
+The choice often depends on the specific requirements of your task, the size and format of your data, the complexity of the transformations needed, and the skills of your team.
 # Stages of data processing
 ## There are four stages for processing big data solutions that are common to all architectures:
 
