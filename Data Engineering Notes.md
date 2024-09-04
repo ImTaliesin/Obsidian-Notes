@@ -1,6 +1,6 @@
-[[Database]] [[SQL]] [[Data Lake]] [[Apache Spark]] [[Delta Lake]]
+[[Database]] [[SQL]] [[Data Lake]] [[Apache Spark]] [[Delta Lake]] [[Data Warehouse]]
 ## Vocab:
-### Relational Table, data lake: data stored in files, data warehouse,  data lakehouse, data pipeline
+### Relational Table, data lake: data stored in files, data warehouse,  data lakehouse, data pipeline, key vaults implementation with pipeline
 
 -  _ACID_: _atomicity_ (transactions complete as a single unit of work), _consistency_ (transactions leave the database in a consistent state), _isolation_ (in-process transactions can't interfere with one another), and _durability_ (when a transaction completes, the changes it made are persisted). Delta Lake tables can be used as both _sinks_ (destinations) and _sources_ for streaming data.
 - **Standard formats and interoperability**. The underlying data for Delta Lake tables is stored in Parquet format, which is commonly used in data lake ingestion pipelines. 

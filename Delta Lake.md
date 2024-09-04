@@ -7,6 +7,31 @@ notes include how to:
 - Create Spark catalog tables for Delta Lake data.
 - Use Delta Lake tables for streaming data.
 - Query Delta Lake tables from a Synapse Analytics SQL pool.
+
+## When to use Delta Lake:
+
+1. When you need ACID transactions in your data lake: Delta Lake brings transactional integrity to your data lake operations. This is crucial when you need to ensure data consistency and reliability, especially in scenarios involving concurrent reads and writes.
+2. For data versioning and time travel capabilities: If your use case requires the ability to access and query previous versions of your data, Delta Lake's time travel feature is invaluable. This is particularly useful for auditing, reproducing past results, or rolling back to a previous state.
+3. When dealing with both batch and streaming data: Delta Lake's ability to handle both batch and streaming data in a unified manner makes it ideal for scenarios where you need to process real-time data alongside historical data.
+4. For simplifying ETL processes: Delta Lake's support for CRUD operations allows for more straightforward ETL processes, especially when you need to update or delete specific records in your data lake.
+5. When you need to enforce a schema on your data lake: Delta Lake provides schema enforcement, which helps maintain data quality and consistency in your data lake.
+6. For optimizing query performance: Delta Lake includes features like data skipping and Z-ordering that can significantly improve query performance on large datasets.
+7. When working with Spark in Azure Synapse Analytics: If you're already using Spark in Azure Synapse Analytics, Delta Lake integrates seamlessly and can enhance your data processing capabilities.
+
+### Specific scenarios where Delta Lake shines:
+
+1. IoT data processing: For handling large volumes of streaming sensor data while also allowing for historical analysis.
+2. Customer 360 views: When you need to continuously update and query customer data from various sources.
+3. Data warehousing: For building a scalable, ACID-compliant data warehouse on top of your data lake.
+4. Machine Learning pipelines: To ensure data consistency and versioning in your ML feature stores and model training datasets.
+5. Regulatory compliance: When you need to maintain audit trails and have the ability to revert to previous data states for compliance reasons.
+6. Real-time analytics: For scenarios requiring both real-time data ingestion and immediate querying capabilities.
+
+When to use Delta Lake:
+
+- You should consider using Delta Lake when you're working with large-scale data in Azure and need the benefits of both data lakes (scalability, support for diverse data types) and traditional databases (ACID transactions, data consistency).
+- It's particularly valuable when your data engineering workflows involve frequent updates to data, require strong consistency guarantees, or need to support both batch and streaming operations.
+- If you're already using Apache Spark in your Azure environment, integrating Delta Lake can provide significant enhancements to your data management capabilities.
 ## Delta lakes with streaming data
 streaming data can come in real time [docs](https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html)
 ### Spark Structured Streaming

@@ -49,7 +49,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Delta Lake.md",
+                "file": "Data Warehouse.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#Parquet",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -124,7 +124,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Delta Lake.md",
+                "file": "Data Warehouse.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -141,7 +141,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Delta Lake.md",
+                "file": "Data Warehouse.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -164,7 +164,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Delta Lake.md"
+                "file": "Data Warehouse.md"
               }
             }
           },
@@ -209,19 +209,21 @@
   },
   "active": "afd2a2d058dad6ef",
   "lastOpenFiles": [
-    "Data Engineering Notes.md",
+    "Pasted image 20240903232241.png",
+    "Data Warehouse.md",
     "Delta Lake.md",
+    "Data Engineering Notes.md",
+    "SQL.md",
+    "Typescript.md",
     "Apache Spark.md",
     "Data Lake.md",
     "Fullstack NextJS List.md",
-    "SQL.md",
     "Database.md",
     "Pasted image 20240830192309.png",
     "Pasted image 20240830170607.png",
     "class.md",
     "NextJS.md",
     "drizzle.md",
-    "Typescript.md",
     "ExpressJS.md",
     "Pasted image 20240824122808.png",
     "dynamic.md",
@@ -242,8 +244,6 @@
     "Typescript React code snippets.md",
     "Props.md",
     "React JS.md",
-    "Decorators.md",
-    "Generics.md",
     "Untitled 2.canvas",
     "Untitled 1.canvas"
   ]
