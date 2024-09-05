@@ -118,7 +118,23 @@ After creating a dedicated SQL pool, you can control its running state in the *
 
 When the pool is running, you can explore it on the **Data** page, and create SQL scripts to run in it.
 
-## Considerations for creating tables
+## Create data warehouse tables
+To create a relational data warehouse in Azure Synapse Analytics, you must create a dedicated SQL Pool. The simplest way to do this in an existing Azure Synapse Analytics workspace is to use the **Manage** page in Azure Synapse Studio, as shown here:
+
+![A screenshot of the SQL pools tab in the Manage page of Synapse Studio.](https://learn.microsoft.com/en-us/training/wwl-data-ai/design-multidimensional-schema-to-optimize-analytical-workloads/media/sql-pools.png)
+
+When provisioning a dedicated SQL pool, you can specify the following configuration settings:
+
+- A unique name for the dedicated SQL pool.
+- A performance level for the SQL pool, which can range from _DW100c_ to _DW30000c_ and which determines the cost per hour for the pool when it's running.
+- Whether to start with an empty pool or restore an existing database from a backup.
+- The _collation_ of the SQL pool, which determines sort order and string comparison rules for the database. (_You can't change the collation after creation_).
+
+After creating a dedicated SQL pool, you can control its running state in the **Manage** page of Synapse Studio; pausing it when not required to prevent unnecessary costs.
+
+
+When the pool is running, you can explore it on the **Data** page, and create SQL scripts to run in it.
+### Considerations for creating tables
 
 To create tables in the dedicated SQL pool, you use the `CREATE TABLE` (or sometimes the `CREATE EXTERNAL TABLE`) Transact-SQL statement. The specific options used in the statement depend on the type of table you're creating, which can include:
 
@@ -126,19 +142,20 @@ To create tables in the dedicated SQL pool, you use the `CREATE TABLE` (or som
 - Dimension tables
 - Staging tables
 
+The data warehouse is composed of _fact_ and _dimension_ tables as discussed previously. _Staging_ tables are often used as part of the data warehousing loading process to ingest data from source systems.
+
+When designing a star schema model for small or medium sized datasets you can use your preferred database, such as Azure SQL. For larger data sets you may benefit from implementing your data warehouse in Azure Synapse Analytics instead of SQL Server. It's important to understand some key differences when creating tables in Synapse Analytics.
 ### Data integrity constraints
 
 Dedicated SQL pools in Synapse Analytics don't support _foreign key_ and _unique_ constraints as found in other relational database systems like SQL Server. This means that jobs used to load data must maintain uniqueness and referential integrity for keys, without relying on the table definitions in the database to do so.
 
 For more information about constraints in Azure Synapse Analytics dedicated SQL pools, see [Primary key, foreign key, and unique key using dedicated SQL pool in Azure Synapse Analytics](https://learn.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-table-constraints).
-
 ### Indexes
-
 While Synapse Analytics dedicated SQL pools support _clustered_ indexes as found in SQL Server, the default index type is _clustered columnstore_. This index type offers a significant performance advantage when querying large quantities of data in a typical data warehouse schema and should be used where possible. However, some tables may include data types that can't be included in a clustered columnstore index (for example, VARBINARY(MAX)), in which case a clustered index can be used instead.
+
 For more information about indexing in Azure Synapse Analytics dedicated SQL pools, see [Indexes on dedicated SQL pool tables in Azure Synapse Analytics](https://learn.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-tables-index).
 
 ### Distribution
-
 Azure Synapse Analytics dedicated SQL pools use a [massively parallel processing (MPP) architecture](https://learn.microsoft.com/en-us/azure/architecture/data-guide/relational-data/data-warehousing#data-warehousing-in-azure), as opposed to the symmetric multiprocessing (SMP) architecture used in most OLTP database systems. In an MPP system, the data in a table is distributed for processing across a pool of nodes. Synapse Analytics supports the following kinds of distribution:
 
 - **Hash**: A deterministic hash value is calculated for the specified column and used to assign the row to a compute node.
@@ -147,18 +164,14 @@ Azure Synapse Analytics dedicated SQL pools use a [massively parallel processin
 
 The table type often determines which option to choose for distributing the table.
 
-|Table type|Recommended distribution option|
-|---|---|
-|Dimension|Use replicated distribution for smaller tables to avoid data shuffling when joining to distributed fact tables. If tables are too large to store on each compute node, use hash distribution.|
-|Fact|Use hash distribution with clustered columnstore index to distribute fact tables across compute nodes.|
-|Staging|Use round-robin distribution for staging tables to evenly distribute data across compute nodes.|
-
-For more information about distribution strategies for tables in Azure Synapse Analytics, see [Guidance for designing distributed tables using dedicated SQL pool in Azure Synapse Analytics](https://learn.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-tables-distribute).
-
-## Creating dimension tables
+| Table type | Recommended distribution option                                                                                                                                                               |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #Dimension | Use replicated distribution for smaller tables to avoid data shuffling when joining to distributed fact tables. If tables are too large to store on each compute node, use hash distribution. |
+| #Fact      | Use hash distribution with clustered columnstore index to distribute fact tables across compute nodes.                                                                                        |
+| #Staging   | Use round-robin distribution for staging tables to evenly distribute data across compute nodes.                                                                                               |
+### Creating dimension tables
 
 When you create a dimension table, ensure that the table definition includes surrogate and alternate keys as well as columns for the attributes of the dimension that you want to use to group aggregations. It's often easiest to use an `IDENTITY` column to auto-generate an incrementing surrogate key (otherwise you need to generate unique keys every time you load data). The following example shows a `CREATE TABLE` statement for a hypothetical **DimCustomer** dimension table.
-
 
 ```
 CREATE TABLE dbo.DimCustomer
@@ -216,10 +229,28 @@ WITH
 );
 ```
 
+ The tables are connected through the GeographyKey column:
+    - DimGeography has GeographyKey as its primary key (IDENTITY column).
+    - DimCustomer has GeographyKey as a foreign key referencing DimGeography.
+- How it works:
+    - Instead of storing all customer information in one table, the address details are moved to a separate DimGeography table.
+    - Each unique combination of address details gets a unique GeographyKey in DimGeography.
+    - In DimCustomer, instead of storing the full address, we only store the GeographyKey that references the corresponding row in DimGeography.
+
+- - In the DimGeography table:
+     `GeographyKey INT IDENTITY NOT NULL`
+        This creates an auto-incrementing unique identifier for each geography entry.
+    - In the DimCustomer table:
+     `GeographyKey INT NULL`
+        This column will store the corresponding GeographyKey from the DimGeography table.
+- IDENTITY and Column Names: The IDENTITY property and column names are separate concepts:
+    - IDENTITY: This is a property in SQL Server that automatically generates unique, incrementing values for a column. It's typically used for primary keys.
+
 ### Time dimension tables
 
-Most data warehouses include a _time_ dimension table that enables you to aggregate data by multiple hierarchical levels of time interval. For example, the following example creates a **DimDate** table with attributes that relate to specific dates.
+These are special dimension tables that allow for time-based analysis. They typically include various attributes related to dates.
 
+Most data warehouses include a _time_ dimension table that enables you to aggregate data by multiple hierarchical levels of time interval. For example, the following example creates a **DimDate** table with attributes that relate to specific dates.
 
 ```
 CREATE TABLE dbo.DimDate
@@ -243,9 +274,7 @@ WITH
 );
 ```
 
-A common pattern when creating a dimension table for dates is to use the numeric date in _DDMMYYYY_ or _YYYYMMDD_ format as an integer surrogate key, and the date as a `DATE` or `DATETIME` datatype as the alternate key.
-
-## Creating fact tables
+### Creating fact tables
 
 Fact tables include the keys for each dimension to which they're related, and the attributes and numeric measures for specific events or observations that you want to analyze.
 
@@ -273,7 +302,7 @@ WITH
 );
 ```
 
-## Creating staging tables
+### Creating staging tables
 
 Staging tables are used as temporary storage for data as it's being loaded into the data warehouse. A typical pattern is to structure the table to make it as efficient as possible to ingest the data from its external source (often files in a data lake) into the relational database, and then use SQL statements to load the data from the staging tables into the dimension and fact tables.
 
@@ -338,4 +367,267 @@ WITH
 GO
 ```
 
-For more information about using external tables, see [Use external tables with Synapse SQL](https://learn.microsoft.com/en-us/azure/synapse-analytics/sql/develop-tables-external-tables) in the Azure Synapse Analytics documentation.
+## Load data warehous tables
+loading a data warehouse is typically achieved by adding new data from files in a data lake into tables in the data warehouse. The `COPY` statement is an effective way to accomplish this task, as shown in the following example:
+
+```
+COPY INTO dbo.StageProducts
+    (ProductID, ProductName, ProductCategory, Color, Size, ListPrice, Discontinued)
+FROM 'https://mydatalake.blob.core.windows.net/data/stagedfiles/products/*.parquet'
+WITH
+(
+    FILE_TYPE = 'PARQUET',
+    MAXERRORS = 0,
+    IDENTITY_INSERT = 'OFF'
+);
+```
+Let's walk through a practical example of how data might flow through different table types:
+
+a) Source Systems -> Data Lake:
+- Data from various operational systems (e.g., sales, inventory, customer management) is extracted and stored in raw format in a data lake.
+- Files might be in formats like CSV, JSON, or Parquet.
+
+b) Data Lake -> Staging Tables:
+
+- Raw data is loaded into staging tables using the COPY command you mentioned.
+- Example:
+    `COPY INTO dbo.StageSales FROM 'https://mydatalake.blob.core.windows.net/data/sales/*.parquet' WITH (FILE_TYPE = 'PARQUET');`
+
+c) Staging Tables -> Dimension Tables:
+
+- Data is transformed and loaded into dimension tables.
+- This might involve looking up existing records, inserting new ones, and handling slowly changing dimensions.
+- Example:
+    `MERGE INTO dbo.DimProduct AS target USING dbo.StageProducts AS source ON target.ProductID = source.ProductID WHEN MATCHED THEN     UPDATE SET target.ProductName = source.ProductName, ... WHEN NOT MATCHED THEN     INSERT (ProductID, ProductName, ...)    VALUES (source.ProductID, source.ProductName, ...);`
+d) Staging Tables -> Fact Tables:
+
+- After dimension tables are updated, fact data is loaded.
+- This involves looking up dimension keys and aggregating measures.
+- Example:
+    `INSERT INTO dbo.FactSales (DateKey, ProductKey, CustomerKey, SalesAmount) SELECT      d.DateKey,    p.ProductKey,    c.CustomerKey,    s.SalesAmount FROM dbo.StageSales s JOIN dbo.DimDate d ON s.SaleDate = d.FullDate JOIN dbo.DimProduct p ON s.ProductID = p.ProductID JOIN dbo.DimCustomer c ON s.CustomerID = c.CustomerID;`
+
+1. External Tables vs. Staging Tables:
+
+External Tables:
+- Provide a way to query data stored outside the data warehouse (e.g., in the data lake) without actually loading it.
+- Useful for exploring raw data, performing light transformations, or querying large datasets that don't need to be fully loaded.
+- Example:
+    `CREATE EXTERNAL TABLE ExtSales (     SaleID int,    SaleDate date,    ProductID int,    Quantity int,    Amount decimal(10,2) ) WITH (     LOCATION = 'sales/*.parquet',    DATA_SOURCE = MyDataLake,    FILE_FORMAT = ParquetFileFormat );`
+
+Staging Tables:
+- Temporary holding area for data that will be processed and loaded into the actual warehouse tables.
+- Allow for data validation, transformation, and error handling before final loading.
+- Typically internal to the data warehouse.
+
+Best Practices for Choosing:
+- Use external tables when you need to query data in the lake without loading it, or for initial data exploration.
+- Use staging tables when you need to perform complex transformations, data quality checks, or when the data will be loaded into the warehouse regularly.
+- Consider using external tables for large historical datasets that are rarely queried, to save storage in the data warehouse.
+- Use staging tables when you need to join data from multiple sources before loading into dimension or fact tables.
+
+3. Additional Insights:
+- Incremental Loading: For large datasets, consider implementing incremental loading to only process new or changed data each time.
+- Error Handling: Implement error handling and logging in your ETL process to catch and manage data quality issues.
+- Optimizing Performance: After loading, update statistics and rebuild indexes to ensure query performance.
+- Data Validation: Use staging tables to perform data quality checks before loading into final tables.
+
+This process allows for a structured, manageable approach to building and maintaining a data warehouse, ensuring data integrity and performance. The combination of external tables for flexibility and staging tables for controlled data loading provides a robust architecture for handling various data scenarios.
+
+## Query a data warehouse
+When the dimension and fact tables in a data warehouse have been loaded with data, you can use SQL to query the tables and analyze the data they contain. The Transact-SQL syntax used to query tables in a Synapse dedicated SQL pool is similar to SQL used in SQL Server or Azure SQL Database.
+### Aggregating measures by dimension attributes
+
+Most data analytics with a data warehouse involves aggregating numeric measures in fact tables by attributes in dimension tables. Because of the way a star or snowflake schema is implemented, queries to perform this kind of aggregation rely on `JOIN` clauses to connect fact tables to dimension tables, and a combination of aggregate functions and `GROUP BY` clauses to define the aggregation hierarchies.
+
+For example, the following SQL queries the **FactSales** and **DimDate** tables in a hypothetical data warehouse to aggregate sales amounts by year and quarter:
+
+SQLCopy
+
+```
+SELECT  dates.CalendarYear,
+        dates.CalendarQuarter,
+        SUM(sales.SalesAmount) AS TotalSales
+FROM dbo.FactSales AS sales
+JOIN dbo.DimDate AS dates ON sales.OrderDateKey = dates.DateKey
+GROUP BY dates.CalendarYear, dates.CalendarQuarter
+ORDER BY dates.CalendarYear, dates.CalendarQuarter;
+```
+
+The results from this query would look similar to the following table:
+
+Expand table
+
+|CalendarYear|CalendarQuarter|TotalSales|
+|---|---|---|
+|2020|1|25980.16|
+|2020|2|27453.87|
+|2020|3|28527.15|
+|2020|4|31083.45|
+|2021|1|34562.96|
+|2021|2|36162.27|
+|...|...|...|
+
+You can join as many dimension tables as needed to calculate the aggregations you need. For example, the following code extends the previous example to break down the quarterly sales totals by city based on the customer's address details in the **DimCustomer** table:
+
+SQLCopy
+
+```
+SELECT  dates.CalendarYear,
+        dates.CalendarQuarter,
+        custs.City,
+        SUM(sales.SalesAmount) AS TotalSales
+FROM dbo.FactSales AS sales
+JOIN dbo.DimDate AS dates ON sales.OrderDateKey = dates.DateKey
+JOIN dbo.DimCustomer AS custs ON sales.CustomerKey = custs.CustomerKey
+GROUP BY dates.CalendarYear, dates.CalendarQuarter, custs.City
+ORDER BY dates.CalendarYear, dates.CalendarQuarter, custs.City;
+```
+
+This time, the results include a quarterly sales total for each city:
+
+Expand table
+
+|CalendarYear|CalendarQuarter|City|TotalSales|
+|---|---|---|---|
+|2020|1|Amsterdam|5982.53|
+|2020|1|Berlin|2826.98|
+|2020|1|Chicago|5372.72|
+|...|...|...|..|
+|2020|2|Amsterdam|7163.93|
+|2020|2|Berlin|8191.12|
+|2020|2|Chicago|2428.72|
+|...|...|...|..|
+|2020|3|Amsterdam|7261.92|
+|2020|3|Berlin|4202.65|
+|2020|3|Chicago|2287.87|
+|...|...|...|..|
+|2020|4|Amsterdam|8262.73|
+|2020|4|Berlin|5373.61|
+|2020|4|Chicago|7726.23|
+|...|...|...|..|
+|2021|1|Amsterdam|7261.28|
+|2021|1|Berlin|3648.28|
+|2021|1|Chicago|1027.27|
+|...|...|...|..|
+
+### Joins in a snowflake schema
+
+When using a snowflake schema, dimensions may be partially normalized; requiring multiple joins to relate fact tables to snowflake dimensions. For example, suppose your data warehouse includes a **DimProduct** dimension table from which the product categories have been normalized into a separate **DimCategory** table. A query to aggregate items sold by product category might look similar to the following example:
+
+SQLCopy
+
+```
+SELECT  cat.ProductCategory,
+        SUM(sales.OrderQuantity) AS ItemsSold
+FROM dbo.FactSales AS sales
+JOIN dbo.DimProduct AS prod ON sales.ProductKey = prod.ProductKey
+JOIN dbo.DimCategory AS cat ON prod.CategoryKey = cat.CategoryKey
+GROUP BY cat.ProductCategory
+ORDER BY cat.ProductCategory;
+```
+
+The results from this query include the number of items sold for each product category:
+
+Expand table
+
+|ProductCategory|ItemsSold|
+|---|---|
+|Accessories|28271|
+|Bits and pieces|5368|
+|...|...|
+
+ Note
+
+JOIN clauses for **FactSales** and **DimProduct** and for **DimProduct** and **DimCategory** are both required, even though no fields from **DimProduct** are returned by the query.
+
+#### Using ranking functions
+Another common kind of analytical query is to partition the results based on a dimension attribute and _rank_ the results within each partition. For example, you might want to rank stores each year by their sales revenue. To accomplish this goal, you can use Transact-SQL _ranking_ functions such as `ROW_NUMBER`, `RANK`, `DENSE_RANK`, and `NTILE`. These functions enable you to partition the data over categories, each returning a specific value that indicates the relative position of each row within the partition:
+
+- **ROW_NUMBER** returns the ordinal position of the row within the partition. For example, the first row is numbered 1, the second 2, and so on.
+- **RANK** returns the ranked position of each row in the ordered results. For example, in a partition of stores ordered by sales volume, the store with the highest sales volume is ranked 1. If multiple stores have the same sales volumes, they'll be ranked the same, and the rank assigned to subsequent stores reflects the number of stores that have higher sales volumes - including ties.
+- **DENSE_RANK** ranks rows in a partition the same way as **RANK**, but when multiple rows have the same rank, subsequent rows are ranking positions ignore ties.
+- **NTILE** returns the specified percentile in which the row falls. For example, in a partition of stores ordered by sales volume, `NTILE(4)` returns the quartile in which a store's sales volume places it.
+
+For example, consider the following query:
+```
+SELECT  ProductCategory,
+        ProductName,
+        ListPrice,
+        ROW_NUMBER() OVER
+            (PARTITION BY ProductCategory ORDER BY ListPrice DESC) AS RowNumber,
+        RANK() OVER
+            (PARTITION BY ProductCategory ORDER BY ListPrice DESC) AS Rank,
+        DENSE_RANK() OVER
+            (PARTITION BY ProductCategory ORDER BY ListPrice DESC) AS DenseRank,
+        NTILE(4) OVER
+            (PARTITION BY ProductCategory ORDER BY ListPrice DESC) AS Quartile
+FROM dbo.DimProduct
+ORDER BY ProductCategory;
+```
+
+The query partitions products into groupings based on their categories, and within each category partition, the relative position of each product is determined based on its list price. The results from this query might look similar to the following table:
+
+|ProductCategory|ProductName|ListPrice|RowNumber|Rank|DenseRank|Quartile|
+|---|---|---|---|---|---|---|
+|Accessories|Widget|8.99|1|1|1|1|
+|Accessories|Knicknak|8.49|2|2|2|1|
+|Accessories|Sprocket|5.99|3|3|3|2|
+|Accessories|Doodah|5.99|4|3|3|2|
+|Accessories|Spangle|2.99|5|5|4|3|
+|Accessories|Badabing|0.25|6|6|5|4|
+|Bits and pieces|Flimflam|7.49|1|1|1|1|
+|Bits and pieces|Snickity wotsit|6.99|2|2|2|1|
+|Bits and pieces|Flange|4.25|3|3|3|2|
+|...|...|...|...|...|...|...|
+
+The sample results demonstrate the difference between `RANK` and `DENSE_RANK`. Note that in the _Accessories_ category, the _Sprocket_ and _Doodah_ products have the same list price; and are both ranked as the 3rd highest priced product. The next highest priced product has a _RANK_ of 5 (there are four products more expensive than it) and a _DENSE_RANK_ of 4 (there are three higher prices).
+
+To learn more about ranking functions, see [Ranking Functions (Transact-SQL)](https://learn.microsoft.com/en-us/sql/t-sql/functions/ranking-functions-transact-sql) in the Azure Synapse Analytics documentation.
+
+## Retrieving an approximate count
+
+While the purpose of a data warehouse is primarily to support analytical data models and reports for the enterprise; data analysts and data scientists often need to perform some initial data exploration, just to determine the basic scale and distribution of the data.
+
+For example, the following query uses the `COUNT` function to retrieve the number of sales for each year in a hypothetical data warehouse:
+
+
+```
+SELECT dates.CalendarYear AS CalendarYear,
+    COUNT(DISTINCT sales.OrderNumber) AS Orders
+FROM FactSales AS sales
+JOIN DimDate AS dates ON sales.OrderDateKey = dates.DateKey
+GROUP BY dates.CalendarYear
+ORDER BY CalendarYear;
+```
+
+The results of this query might look similar to the following table:
+
+|CalendarYear|Orders|
+|---|---|
+|2019|239870|
+|2020|284741|
+|2021|309272|
+|...|...|
+
+The volume of data in a data warehouse can mean that even simple queries to count the number of records that meet specified criteria can take a considerable time to run. In many cases, a precise count isn't required - an approximate estimate will suffice. In such cases, you can use the `APPROX_COUNT_DISTINCT` function as shown in the following example:
+
+
+```
+SELECT dates.CalendarYear AS CalendarYear,
+    APPROX_COUNT_DISTINCT(sales.OrderNumber) AS ApproxOrders
+FROM FactSales AS sales
+JOIN DimDate AS dates ON sales.OrderDateKey = dates.DateKey
+GROUP BY dates.CalendarYear
+ORDER BY CalendarYear;
+```
+
+The `APPROX_COUNT_DISTINCT` function uses a _HyperLogLog_ algorithm to retrieve an approximate count. The result is guaranteed to have a maximum error rate of 2% with 97% probability, so the results of this query with the same hypothetical data as before might look similar to the following table:
+
+|CalendarYear|ApproxOrders|
+|---|---|
+|2019|235552|
+|2020|290436|
+|2021|304633|
+|...|...|
+
+The counts are less accurate, but still sufficient for an approximate comparison of yearly sales. With a large volume of data, the query using the `APPROX_COUNT_DISTINCT` function completes more quickly, and the reduced accuracy may be an acceptable trade-off during basic data exploration.

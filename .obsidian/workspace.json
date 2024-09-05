@@ -13,31 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Data Engineering Notes.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "e48a3f471718d036",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Data Engineering Notes.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "3b3c3c88bf0d71e4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Data Engineering Notes.md",
+                "file": "Data Warehouse.md",
                 "mode": "source",
                 "source": false
               }
@@ -49,14 +25,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Data Warehouse.md",
+                "file": "SQL.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -85,7 +60,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#Parquet",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -207,13 +182,14 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "afd2a2d058dad6ef",
+  "active": "71c4ca83aff589db",
   "lastOpenFiles": [
-    "Pasted image 20240903232241.png",
-    "Data Warehouse.md",
-    "Delta Lake.md",
     "Data Engineering Notes.md",
+    "Pasted image 20240904201734.png",
+    "Data Warehouse.md",
     "SQL.md",
+    "Pasted image 20240903232241.png",
+    "Delta Lake.md",
     "Typescript.md",
     "Apache Spark.md",
     "Data Lake.md",
@@ -236,7 +212,6 @@
     "Pasted image 20240206161629.png",
     "OAuth.md",
     "NextUI.md",
-    "Pasted image 20240210205408.png",
     "nexst.md",
     "NodeJS.md",
     "Ref.md",

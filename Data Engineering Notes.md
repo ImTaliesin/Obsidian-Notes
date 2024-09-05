@@ -5,9 +5,54 @@
 -  _ACID_: _atomicity_ (transactions complete as a single unit of work), _consistency_ (transactions leave the database in a consistent state), _isolation_ (in-process transactions can't interfere with one another), and _durability_ (when a transaction completes, the changes it made are persisted). Delta Lake tables can be used as both _sinks_ (destinations) and _sources_ for streaming data.
 - **Standard formats and interoperability**. The underlying data for Delta Lake tables is stored in Parquet format, which is commonly used in data lake ingestion pipelines. 
 ------------------------------------------------------------------
+![[Pasted image 20240904201734.png]]
+## How Azure combines everything
+1. Source Systems: These are the original data sources, such as transactional databases, IoT devices, or application logs.
+2. Azure Data Lake Storage:
+    - Acts as a centralized repository for all your raw and processed data.
+    - Stores data in its native format, which can be structured, semi-structured, or unstructured.
+    - Provides a scalable and cost-effective solution for big data analytics.
+3. Delta Lake (on Azure Databricks):
+    - An open-source storage layer that brings ACID transactions to big data workloads.
+    - Sits on top of your Data Lake Storage, providing versioning, time travel, and improved performance.
+    - Often used for data processing and transformation tasks before loading into the data warehouse.
+4. Azure Databricks:
+    - A unified analytics platform for large-scale data processing and machine learning.
+    - Used for ETL processes, data science workloads, and preparing data for analytics.
+    - Can read from and write to both Data Lake Storage and Delta Lake.
+5. Azure Synapse Analytics: This is Microsoft's analytics service that brings together data integration, enterprise data warehousing, and big data analytics. Within Synapse, we have:
+   a. External Tables:
+    - Provide a way to query data directly from the Data Lake without loading it into the data warehouse.
+    - Useful for exploring raw data or querying large datasets that don't need to be fully loaded.
+    
+    b. Staging Tables:
+    - Temporary tables used to load data from the Data Lake before final processing.
+    - Allow for data validation, transformation, and error handling.
+    
+    c. Dimension and Fact Tables:
+    - The core components of your data warehouse.
+    - Dimension tables contain descriptive attributes (e.g., product details, customer information).
+    - Fact tables contain measurable, quantitative data (e.g., sales transactions, inventory levels).
+    
+    d. Data Warehouse:
+    - The final, optimized structure for analytical queries and reporting.
+    - Typically uses a star or snowflake schema for efficient querying.
 
-Azure Data Lake Storage Gen2 stores data in an HDFS-compatible file system hosted in Azure Storage.
+Data Flow:
 
+1. Raw data from source systems is ingested into Azure Data Lake Storage.
+2. This data can be processed and refined using Azure Databricks, potentially utilizing Delta Lake for ACID compliance and performance optimization.
+3. Processed data is then either stored back in the Data Lake or moved directly to Azure Synapse Analytics.
+4. Within Synapse, data can be accessed via external tables for initial exploration or loaded into staging tables using the COPY command.
+5. Data in staging tables is then transformed and loaded into dimension and fact tables, forming the data warehouse structure.
+6. The resulting data warehouse is optimized for analytical queries and business intelligence tools.
+
+This architecture allows for a flexible, scalable approach to data management and analytics:
+- The Data Lake provides a cost-effective way to store large volumes of raw data.
+- Delta Lake adds reliability and performance to big data operations.
+- Databricks offers powerful processing capabilities for complex transformations.
+- External tables in Synapse allow for querying data without full ingestion.
+- The staging-to-warehouse process in Synapse ensures data quality and optimized analytical performance.
 ## SQL vs Python
 
 Use SQL when:

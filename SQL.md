@@ -5,6 +5,43 @@ SQL includes many features and functions that enable you to manipulate data. For
 - Calculate derived data fields.
 - Manipulate string values.
 - Group and aggregate data.
+
+## Vocab
+### IDENTITY
+1. `IDENTITY`: This is a crucial part for auto-incrementing.
+    - When you add `IDENTITY` to a column definition, SQL Server automatically generates unique, incrementing values for this column whenever a new row is inserted.
+    - By default, it starts at 1 and increments by 1 for each new row.
+    - You don't need to specify a value for this column when inserting data; SQL Server handles it automatically.
+2. `NULL` / `NOT NULL`:
+    - `NOT NULL` means the column must always have a value.
+    - `NULL` means the column can have no value (i.e., be empty).
+So, let's compare:
+1. `GeographyKey INT IDENTITY NOT NULL` (in DimGeography table)
+    - This creates an auto-incrementing primary key.
+    - Every new row will automatically get a unique, incrementing integer value.
+    - This column cannot be empty (NOT NULL).
+    - Example: If you insert three rows without specifying GeographyKey, they might get values 1, 2, and 3 automatically.
+2. `GeographyKey INT NULL` (in DimCustomer table)
+    - This is a regular integer column that can contain NULL values.
+    - It doesn't auto-increment.
+    - You need to manually specify the value when inserting data, or it will be NULL.
+    - This is used as a foreign key to reference the DimGeography table.
+
+To illustrate:
+```
+-- This will auto-generate GeographyKey values
+INSERT INTO DimGeography (StreetAddress, City, PostalCode, CountryRegion)
+VALUES ('123 Main St', 'Springfield', '12345', 'USA');
+
+-- The GeographyKey must be specified (or left NULL)
+INSERT INTO DimCustomer (GeographyKey, CustomerName, EmailAddress)
+VALUES (1, 'John Doe', 'john@example.com');
+```
+
+In the DimGeography insert, you don't specify GeographyKey because it's an IDENTITY column. In the DimCustomer insert, you do need to specify it (or omit it to allow NULL) because it's not an IDENTITY column in this table.
+
+------------------------------------------------------------------
+
 ## Auth
 Serverless SQL pool authentication refers to how users prove their identity when connecting to the endpoint. Two types of authentication are supported:
 
