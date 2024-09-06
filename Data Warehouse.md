@@ -631,3 +631,69 @@ The `APPROX_COUNT_DISTINCT` function uses a _HyperLogLog_ algorithm to retri
 |...|...|
 
 The counts are less accurate, but still sufficient for an approximate comparison of yearly sales. With a large volume of data, the query using the `APPROX_COUNT_DISTINCT` function completes more quickly, and the reduced accuracy may be an acceptable trade-off during basic data exploration.
+
+## Load dimension tables with CREATE TABLE AS (CTAS)
+## Using a CREATE TABLE AS (CTAS) statement
+
+One of the simplest ways to load data into a new dimension table is to use a `CREATE TABLE AS` (_CTAS_) expression. This statement creates a new table based on the results of a SELECT statement.
+
+```
+CREATE TABLE dbo.DimProduct
+WITH
+(
+    DISTRIBUTION = REPLICATE,
+    CLUSTERED COLUMNSTORE INDEX
+)
+AS
+SELECT ROW_NUMBER() OVER(ORDER BY ProdID) AS ProdKey,
+    ProdID as ProdAltKey,
+    ProductName,
+    ProductCategory,
+    Color,
+    Size,
+    ListPrice,
+    Discontinued
+FROM dbo.StageProduct;
+```
+You can't use `IDENTITY` to generate a unique integer value for the surrogate key when using a CTAS statement, so this example uses the `ROW_NUMBER` function to generate an incrementing row number for each row in the results ordered by the **ProductID** business key in the staged data.
+
+You can also load a combination of new and updated data into a dimension table by using a CREATE TABLE AS (CTAS) statement to create a new table that UNIONs the existing rows from the dimension table with the new and updated records from the staging table. After creating the new table, you can delete or rename the current dimension table, and rename the new table to replace it.
+
+```
+CREATE TABLE dbo.DimProductUpsert
+WITH
+(
+    DISTRIBUTION = REPLICATE,
+    CLUSTERED COLUMNSTORE INDEX
+)
+AS
+-- New or updated rows
+SELECT  stg.ProductID AS ProductBusinessKey,
+        stg.ProductName,
+        stg.ProductCategory,
+        stg.Color,
+        stg.Size,
+        stg.ListPrice,
+        stg.Discontinued
+FROM    dbo.StageProduct AS stg
+UNION ALL  
+-- Existing rows
+SELECT  dim.ProductBusinessKey,
+        dim.ProductName,
+        dim.ProductCategory,
+        dim.Color,
+        dim.Size,
+        dim.ListPrice,
+        dim.Discontinued
+FROM    dbo.DimProduct AS dim
+WHERE NOT EXISTS
+(   SELECT  *
+    FROM dbo.StageProduct AS stg
+    WHERE stg.ProductId = dim.ProductBusinessKey
+);
+
+RENAME OBJECT dbo.DimProduct TO DimProductArchive;
+RENAME OBJECT dbo.DimProductUpsert TO DimProduct;
+```
+
+While this technique is effective in merging new and existing dimension data, lack of support for IDENTITY columns means that it's difficult to generate a surrogate key.

@@ -1,4 +1,4 @@
-[[Database]] [[SQL]] [[Data Lake]] [[Apache Spark]] [[Delta Lake]] [[Data Warehouse]]
+[[Database]] [[SQL]] [[Data Lake]] [[Apache Spark]] [[Delta Lake]] [[Data Warehouse]] [[Data Factory]]
 ## Vocab:
 ### Relational Table, data lake: data stored in files, data warehouse,  data lakehouse, data pipeline, key vaults implementation with pipeline
 
@@ -6,6 +6,66 @@
 - **Standard formats and interoperability**. The underlying data for Delta Lake tables is stored in Parquet format, which is commonly used in data lake ingestion pipelines. 
 ------------------------------------------------------------------
 ![[Pasted image 20240904201734.png]]
+## Distribution Strategies in MPP Systems like Azure Synapse
+
+### Overview
+
+In Massively Parallel Processing (MPP) systems, data is distributed across multiple nodes to enable parallel processing and improve query performance. The way data is distributed can significantly impact query speed and resource utilization.
+
+### Key Distribution Strategies
+
+#### 1. Hash Distribution
+
+- **Concept**: Data is distributed across nodes based on a hash of one or more columns.
+- **Best for**: Large fact tables and large dimension tables.
+- **Advantages**:
+    - Minimizes data movement during joins if the join key is the same as the distribution key.
+    - Enables efficient aggregations on the distribution key.
+- **Considerations**:
+    - Choose a column with high cardinality and even distribution.
+    - Commonly used columns in JOIN, GROUP BY, and DISTINCT queries are good candidates.
+
+#### 2. Round Robin Distribution
+
+- **Concept**: Data is distributed evenly across all nodes in a round-robin fashion.
+- **Best for**: Staging tables, temporary tables, or when there's no clear joining key.
+- **Advantages**:
+    - Ensures even data distribution.
+    - Simple to implement.
+- **Considerations**:
+    - Can lead to more data movement during queries, especially for joins.
+
+#### 3. Replicated Distribution
+
+- **Concept**: A full copy of the table is stored on each compute node.
+- **Best for**: Small dimension tables (typically less than 2 GB).
+- **Advantages**:
+    - Eliminates data movement for joins.
+    - Improves query performance for small, frequently used lookup tables.
+- **Considerations**:
+    - Increases storage requirements.
+    - Not suitable for large tables or tables with frequent updates.
+
+### Choosing the Right Strategy
+
+1. **For large fact tables**: Use Hash distribution on a key that's frequently used in joins and aggregations.
+2. **For large dimension tables**: Use Hash distribution if they're often joined with fact tables on a specific key.
+3. **For small dimension tables**: Consider Replicated distribution for faster joins.
+4. **For staging or temporary data**: Round Robin is often suitable.
+
+### Impact on Query Performance
+
+- **Collocated joins**: When tables are distributed on the join key, it minimizes data movement.
+- **Data skew**: Uneven distribution can lead to performance bottlenecks.
+- **Query patterns**: The optimal distribution strategy depends on your most common and critical queries.
+
+### Best Practices
+
+1. Analyze your workload to understand common join and aggregation patterns.
+2. Monitor for data skew and adjust distribution as needed.
+3. Consider using different distribution strategies for dev/test vs. production environments.
+4. Regularly review and optimize your distribution choices as your data and query patterns evolve.
+--------------------------------------------------------------
 ## How Azure combines everything
 1. Source Systems: These are the original data sources, such as transactional databases, IoT devices, or application logs.
 2. Azure Data Lake Storage:

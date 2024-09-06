@@ -13,7 +13,19 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Data Warehouse.md",
+                "file": "Data Engineering Notes.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "e0bb5ed8c2fbc3c7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Factory.md",
                 "mode": "source",
                 "source": false
               }
@@ -31,7 +43,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -99,7 +112,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Data Warehouse.md",
+                "file": "Data Factory.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +129,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Data Warehouse.md",
+                "file": "Data Factory.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -139,7 +152,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Data Warehouse.md"
+                "file": "Data Factory.md"
               }
             }
           },
@@ -182,11 +195,13 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "71c4ca83aff589db",
+  "active": "e0bb5ed8c2fbc3c7",
   "lastOpenFiles": [
+    "Data Factory.md",
+    "Pasted image 20240906143943.png",
     "Data Engineering Notes.md",
-    "Pasted image 20240904201734.png",
     "Data Warehouse.md",
+    "Pasted image 20240904201734.png",
     "SQL.md",
     "Pasted image 20240903232241.png",
     "Delta Lake.md",
@@ -209,7 +224,6 @@
     "Pasted image 20240207140952.png",
     "Pasted image 20240207123809.png",
     "Pasted image 20240207123108.png",
-    "Pasted image 20240206161629.png",
     "OAuth.md",
     "NextUI.md",
     "nexst.md",
@@ -218,7 +232,6 @@
     "body-parser.md",
     "Typescript React code snippets.md",
     "Props.md",
-    "React JS.md",
     "Untitled 2.canvas",
     "Untitled 1.canvas"
   ]
