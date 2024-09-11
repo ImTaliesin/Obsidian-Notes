@@ -1,1 +1,1 @@
-[[Unity Catalog]]
+[[Unity Catalog]] [[SQL]]

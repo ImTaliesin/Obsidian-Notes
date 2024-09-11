@@ -10,7 +10,7 @@ We will use azure data factory for all data integration and orchestration. It wi
 [[HDInsight]] gives you the ability to write code in a [[SQL]] like language called [[Hive]] and a scripting language called [[Pig]].
 [[databricks]] requires you to write code with [[Python]] or [[SparkSQL]]
 
-Also used is [[Azure Blob Storage]], [[Data Lake]], [[Synapse Analytics]], [[Power BI]], [[Azure Databases]] 
+Also used is [[Azure Blob Storage]], [[Data Lake]], [[Synapse Analytics]], [[Power BI]], [[Azure Databases]] [[Database]]
 
 ## Useful Links & Resources
 #### Lecture: Project Overview

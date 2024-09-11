@@ -1,4 +1,4 @@
-[[Typescript]] [[Database]] [[NextJS]]
+[[Typescript]] [[Database]] [[NextJS]] [[SQL]] [[drizzle]]
 ```
 npm install prisma
 npx prisma init --datasource-provider sqlite

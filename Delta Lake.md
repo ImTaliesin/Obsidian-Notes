@@ -1,5 +1,5 @@
 [Docs](https://docs.delta.io/latest/delta-apidoc.html) [Activity](https://microsoftlearning.github.io/dp-203-azure-data-engineer/Instructions/Labs/07-Use-delta-lake.html)
-Delta Lake is an **open-source storage layer** that adds relational database semantics to Spark-based data lake processing. Delta Lake is supported in Azure Synapse Analytics Spark pools for PySpark, Scala, and .NET code.
+Delta Lake is an **open-source storage layer** that adds relational [[database]] semantics to Spark-based data lake processing. Delta Lake is supported in Azure Synapse Analytics Spark pools for PySpark, Scala, and .NET code. [[SparkSQL]] 
 
 notes include how to:
 - Describe core features and capabilities of Delta Lake.
