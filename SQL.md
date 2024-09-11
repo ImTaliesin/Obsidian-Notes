@@ -5,9 +5,42 @@ SQL includes many features and functions that enable you to manipulate data. For
 - Calculate derived data fields.
 - Manipulate string values.
 - Group and aggregate data.
+## Data Types
+### Numerical
+Integer data types hold whole numbers. There are 4 int types:
+* INT: range = -2,147,483,648, -2,147,483,647
+* TINYINT: -128 - 127
+* SMALLINT:
+* BIGINT:
+4 decimal types:
+* FLOAT: standard
+* DOUBLE: more precise but is big file size
+* DECIMAL: exact numerical places, very big file size.
+### String
+### Date/ Time
+The DATE Data type is used to store date values in this format "YYYY-MM-DD"
+### Boolean
+
 
 ## Vocab
-### IDENTITY
+
+### SELECT
+* used to select data
+* `select * from ____
+### Catalog
+* You can specify a catalog by using catalog.schema.table
+	* `select * from samples.nyctaxi.trips`
+* Or by typing `use catalog _____`
+*   `show catalogs;`
+* `describe catalog extended dbw_sql_udemytutorial;`
+* You can create a catalog in the data tab and you need admin priv.
+
+### Schema
+
+### CREATE 
+You can create a table and copy another table with the same query.
+* `CREATE TABLE TEST_2 AS SELECT * FROM TEST_1`
+### IDENTITY (auto incrementing)
 1. `IDENTITY`: This is a crucial part for auto-incrementing.
     - When you add `IDENTITY` to a column definition, SQL Server automatically generates unique, incrementing values for this column whenever a new row is inserted.
     - By default, it starts at 1 and increments by 1 for each new row.

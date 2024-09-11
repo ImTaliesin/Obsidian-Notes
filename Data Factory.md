@@ -1,14 +1,14 @@
 A fully managed, serverless data integration solution for ingesting, preparing and transforming all of your data at scale.
 
-Data factories are not meant for data migrating, data streaming, or complex data transformations (databriks/spark), or data storage.
+Data factories are not meant for data migrating, data streaming, or complex data transformations ([[databricks]]/spark), or data storage.
 ![[Pasted image 20240906143943.png]]
 
-We will use azure data factory for all data integration and orchestration. It will run  transofrmations with HDInsight and Azure databriks. We have three transformation technologies being used, data flow, HDInsight, Databriks.
+We will use azure data factory for all data integration and orchestration. It will run  transformations with [[HDInsight]] and Azure [[databricks]]. We have three transformation technologies being used, data flow, HDInsight, Databricks.
 
 [[Dataflow]] gives you a codefree transformation tool which makes it easy to develop and maintain the transoformation.
 - Use this for simple and medium level complexity transformations as it lacks the ability to make complex transformations
 [[HDInsight]] gives you the ability to write code in a [[SQL]] like language called [[Hive]] and a scripting language called [[Pig]].
-[[Databriks]] requires you to write code with [[Python]] or [[SparkSQL]]
+[[databricks]] requires you to write code with [[Python]] or [[SparkSQL]]
 
 Also used is [[Azure Blob Storage]], [[Data Lake]], [[Synapse Analytics]], [[Power BI]], [[Azure Databases]] 
 

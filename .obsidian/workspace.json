@@ -8,30 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "71c4ca83aff589db",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Data Engineering Notes.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "e0bb5ed8c2fbc3c7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Data Factory.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "afd2a2d058dad6ef",
             "type": "leaf",
             "state": {
@@ -43,8 +19,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -112,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Data Factory.md",
+                "file": "SQL.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -129,7 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Data Factory.md",
+                "file": "SQL.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -152,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Data Factory.md"
+                "file": "SQL.md"
               }
             }
           },
@@ -195,14 +170,17 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "e0bb5ed8c2fbc3c7",
+  "active": "afd2a2d058dad6ef",
   "lastOpenFiles": [
+    "databricks.md",
     "Data Factory.md",
-    "Pasted image 20240906143943.png",
     "Data Engineering Notes.md",
+    "SQL.md",
+    "Pasted image 20240911152450.png",
+    "Unity Catalog.md",
+    "Pasted image 20240906143943.png",
     "Data Warehouse.md",
     "Pasted image 20240904201734.png",
-    "SQL.md",
     "Pasted image 20240903232241.png",
     "Delta Lake.md",
     "Typescript.md",
@@ -223,15 +201,12 @@
     "Pasted image 20240209135900.png",
     "Pasted image 20240207140952.png",
     "Pasted image 20240207123809.png",
-    "Pasted image 20240207123108.png",
     "OAuth.md",
     "NextUI.md",
     "nexst.md",
     "NodeJS.md",
     "Ref.md",
     "body-parser.md",
-    "Typescript React code snippets.md",
-    "Props.md",
     "Untitled 2.canvas",
     "Untitled 1.canvas"
   ]
