@@ -26,7 +26,11 @@ The DATE Data type is used to store date values in this format "YYYY-MM-DD"
 
 ### SELECT
 * used to select data
-* `select * from ____
+* `select * from ___
+
+if you want unique data use `select distinct`
+
+  
 ### Catalog
 * You can specify a catalog by using catalog.schema.table
 	* `select * from samples.nyctaxi.trips`
@@ -49,7 +53,7 @@ CAST is a SQL function used to convert data from one data type to another. It's 
 - Converting numbers to strings (or vice versa)
 - Changing date formats
 - Adjusting precision of numeric data
-- Converting boolean values to integers
+- Converting Boolean values to integers
 #### Examples
 Converting a string to a date
 `SELECT CAST('2023-09-12' AS DATE) AS converted_date;
@@ -57,6 +61,16 @@ Changing a number to a string
 `SELECT CAST(12345 AS VARCHAR(10)) AS number_as_string;
 Converting a date to a string
 `SELECT CAST(GETDATE() AS VARCHAR(23)) AS date_as_string;`
+
+### TRUNCATE
+you can delete all rows from a table but keep the schema by using truncate
+`truncate table _tablename_;`
+
+### ALTER
+alter table command can 
+* `RENAME TO`
+* `ADD COLUMN _type_`
+* `DROP COLUMN`
 
 ### IDENTITY (auto incrementing)
 1. `IDENTITY`: This is a crucial part for auto-incrementing.
