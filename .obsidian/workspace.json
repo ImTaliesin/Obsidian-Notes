@@ -11,8 +11,12 @@
             "id": "ca669c13c6d3b0dc",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "SQL.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -83,6 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "SQL.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,6 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "SQL.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -120,7 +126,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "SQL.md"
+              }
             }
           },
           {
@@ -164,6 +172,7 @@
   },
   "active": "ca669c13c6d3b0dc",
   "lastOpenFiles": [
+    "SQL.md",
     "Azure Databases.md",
     "Prisma.md",
     "drizzle.md",
@@ -173,7 +182,6 @@
     "Database.md",
     "databricks.md",
     "Data Engineering Notes.md",
-    "SQL.md",
     "Pasted image 20240911152450.png",
     "Unity Catalog.md",
     "Pasted image 20240906143943.png",

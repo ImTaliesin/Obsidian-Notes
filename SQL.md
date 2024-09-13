@@ -40,6 +40,24 @@ The DATE Data type is used to store date values in this format "YYYY-MM-DD"
 ### CREATE 
 You can create a table and copy another table with the same query.
 * `CREATE TABLE TEST_2 AS SELECT * FROM TEST_1`
+
+### CAST 
+CAST is a SQL function used to convert data from one data type to another. It's useful when you need to change the data type of a column or expression in your query results.
+- **Purpose:** Convert data between compatible data types.
+- **Syntax:** `CAST(expression AS data_type)`
+#### Common Use Cases
+- Converting numbers to strings (or vice versa)
+- Changing date formats
+- Adjusting precision of numeric data
+- Converting boolean values to integers
+#### Examples
+Converting a string to a date
+`SELECT CAST('2023-09-12' AS DATE) AS converted_date;
+Changing a number to a string
+`SELECT CAST(12345 AS VARCHAR(10)) AS number_as_string;
+Converting a date to a string
+`SELECT CAST(GETDATE() AS VARCHAR(23)) AS date_as_string;`
+
 ### IDENTITY (auto incrementing)
 1. `IDENTITY`: This is a crucial part for auto-incrementing.
     - When you add `IDENTITY` to a column definition, SQL Server automatically generates unique, incrementing values for this column whenever a new row is inserted.
