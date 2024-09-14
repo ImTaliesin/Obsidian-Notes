@@ -4,11 +4,47 @@
     "type": "split",
     "children": [
       {
-        "id": "6d76ca2ed8c863bd",
+        "id": "80df61f758860172",
         "type": "tabs",
         "children": [
           {
-            "id": "ca669c13c6d3b0dc",
+            "id": "71c4ca83aff589db",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Engineering Notes.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "e48a3f471718d036",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Engineering Notes.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "3b3c3c88bf0d71e4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Engineering Notes.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "afd2a2d058dad6ef",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -19,7 +55,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -170,36 +207,36 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "ca669c13c6d3b0dc",
+  "active": "afd2a2d058dad6ef",
   "lastOpenFiles": [
-    "SQL.md",
-    "Azure Databases.md",
-    "Prisma.md",
-    "drizzle.md",
-    "SparkSQL.md",
-    "Data Factory.md",
     "Delta Lake.md",
-    "Database.md",
     "databricks.md",
-    "Data Engineering Notes.md",
-    "Pasted image 20240911152450.png",
     "Unity Catalog.md",
+    "SparkSQL.md",
+    "Pasted image 20240911152450.png",
     "Pasted image 20240906143943.png",
-    "Data Warehouse.md",
     "Pasted image 20240904201734.png",
     "Pasted image 20240903232241.png",
-    "Typescript.md",
+    "Data Warehouse.md",
+    "Data Factory.md",
+    "Azure Databases.md",
+    "Data Engineering Notes.md",
     "Apache Spark.md",
     "Data Lake.md",
     "Fullstack NextJS List.md",
+    "SQL.md",
+    "Database.md",
     "Pasted image 20240830192309.png",
     "Pasted image 20240830170607.png",
     "class.md",
     "NextJS.md",
+    "drizzle.md",
+    "Typescript.md",
     "ExpressJS.md",
     "Pasted image 20240824122808.png",
     "dynamic.md",
     "Vercel.md",
+    "Prisma.md",
     "Pasted image 20240209135900.png",
     "Pasted image 20240207140952.png",
     "Pasted image 20240207123809.png",

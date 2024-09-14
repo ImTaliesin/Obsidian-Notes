@@ -29,8 +29,28 @@ The DATE Data type is used to store date values in this format "YYYY-MM-DD"
 * `select * from ___
 
 if you want unique data use `select distinct`
+#### WHERE
+Shows all entries that are true under a specific clause
+`select * from jc_bike_data where start_station_id = 'HB103'`
+##### IN
+is used to specify multiple values in the where clause
+it allows you to retrieve rows where a colum value matches any value in a specified list
+```
+SELECT col1, col2, ...
+FROM table_name
+WHERE column_name IN (value1, value2, ...); 
 
-  
+select * where start_station_id IN ('jc023, 'jc019', 'jc093');
+```
+
+##### LIKE
+You can search the table to search if a field contains specific data, for example if you want to search if an address containst 'St'
+`SELECT * FROM station_data where station_name like '%St%;`
+* the %St% means the field can have anything before and after the St to be shown
+
+#### DELETE FROM
+will let you delete rows that match your designation. if nothing is desginated, all rows will be deleted.
+`DELETE FROM temp_station_data where station_id = 'HB203`
 ### Catalog
 * You can specify a catalog by using catalog.schema.table
 	* `select * from samples.nyctaxi.trips`
@@ -107,6 +127,20 @@ In the DimGeography insert, you don't specify GeographyKey because it's an IDENT
 
 ------------------------------------------------------------------
 
+## Built-in Functions
+### String Functions
+* Upper() takes a string and turns all letters in it uppercase. 
+* Lower() takes a string and turns all letters in it lowercase. 
+* initcap() takes a string and turns the first letter uppercase and the remaining letters lowercase
+* length() returns the length of a string (includes whitespace)
+* right/left(table,number) returns the rightmost / leftmost length using your desired length set inside the parenthesis
+* CONCAT( returns the concatenation/combination of the columns
+	* `select concat(start_station_id, '-', end_station_id) as start_and_stop from jc_bike_data_22 `
+#### Numerical Functions
+* + add
+* * multiply
+* / divide
+* round(columsmath, 1) takes your math for your first arg and an int as the second arg. The second arg determines how many decimal points you round to. 
 ## Auth
 Serverless SQL pool authentication refers to how users prove their identity when connecting to the endpoint. Two types of authentication are supported:
 
