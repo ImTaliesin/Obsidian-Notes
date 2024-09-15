@@ -7,7 +7,100 @@ notes include how to:
 - Create Spark catalog tables for Delta Lake data.
 - Use Delta Lake tables for streaming data.
 - Query Delta Lake tables from a Synapse Analytics SQL pool.
+## Merge INTO
+Merges a set of updates, insertions, and deletions based on a source table into a target Delta table.
 
+Setup:
+```sql
+--Creating the target table
+create table main.default.target_table(id INT, name STRING, age INT);
+insert into main.default.target_table vales (1, 'John', 30);
+insert into main.default.target_table values (3,'Megan', 22);
+
+select * from main.default.target_table;
+
+--creating the source table
+create table main.default.source_table(id INT, name STRING, age INT);
+insert into main.default.source_table values (1 'John', 20);
+insert into main.default.source_table values (2, 'Anika' 19);
+
+select * from main.default.source_table;
+```
+EXAMPLE:
+```sql
+merge into main.default.target_table as t
+	using main.default.source_table as s
+	on t.id = s.id
+	when matched then update set *
+	when not matched then insert *
+--- For all rows where a match is found (based on the ON condition),Update ALL columns in the target table and set them to the values from the corresponding columns in the source table. if the id's dont match then insert the data from the source to the target
+
+merge into main.default.target_table as t
+	using main.default.source_table as s
+	on t.id = s.id
+	when matched then update set t.name = s.name, t.age = s.age
+	when not matched then insert (t.id, t.name, t.age) values (s.id, s.name s.age)
+--
+```
+
+Usage:
+```sql
+MERGE INTO target_table_name [AS target_alias]
+USING (source_table_reference) [AS source_alias]
+ON merge_condition
+WHEN MATCHED [AND <matched_condition>]
+    THEN <matched_action>
+WHEN NOT MATCHED [BY TARGET] [AND <not_matched_condition>]
+    THEN <not_matched_action>
+WHEN NOT MATCHED BY SOURCE [AND <not_matched_by_source_condition>]
+    THEN <not_matched_by_source_action>;
+
+-- Where matched_action can be:
+UPDATE SET column1 = value1 [, column2 = value2 ...]
+DELETE
+
+-- And not_matched_action can be:
+INSERT (column1 [, column2 ...]) VALUES (value1 [, value2 ...])
+```
+
+### Explanation:
+
+1. `MERGE INTO target_table_name`: Specifies the table you want to merge changes into.
+2. `USING (source_table_reference)`: Specifies the source of data for the merge operation. This can be a table, view, or even a subquery.
+3. `ON merge_condition`: Defines how to match rows between the target and source.
+4. `WHEN MATCHED`: Specifies what to do when a row in the target table matches a row in the source.
+    - You can UPDATE or DELETE matched rows.
+5. `WHEN NOT MATCHED [BY TARGET]`: Specifies what to do when a row in the source doesn't match any row in the target.
+    - Typically used to INSERT new rows.
+6. `WHEN NOT MATCHED BY SOURCE`: Specifies what to do with rows in the target that don't match any in the source.
+    - Often used to DELETE or UPDATE rows that no longer exist in the source.
+7. Each WHEN clause can have an additional condition for more granular control.
+
+```sql
+MERGE INTO Customers AS target
+USING (SELECT * FROM NewCustomers) AS source
+ON (target.CustomerID = source.CustomerID)
+WHEN MATCHED AND source.LastPurchase > target.LastPurchase
+    THEN UPDATE SET 
+        target.LastPurchase = source.LastPurchase,
+        target.TotalPurchases = target.TotalPurchases + source.PurchaseAmount
+WHEN NOT MATCHED BY TARGET 
+    THEN INSERT (CustomerID, Name, LastPurchase, TotalPurchases)
+         VALUES (source.CustomerID, source.Name, source.LastPurchase, source.PurchaseAmount)
+WHEN NOT MATCHED BY SOURCE 
+    THEN DELETE;
+```
+
+This MERGE statement:
+- Updates existing customers if there's a newer purchase
+- Inserts new customers
+- Deletes customers that no longer exist in the source
+
+### Key Points:
+- MERGE is an atomic operation – it's all or nothing.
+- It's more efficient than separate INSERT, UPDATE, and DELETE operations.
+- Not all database systems support all features of MERGE.
+- The order of WHEN clauses can matter for performance.
 ## When to use Delta Lake:
 
 1. When you need ACID transactions in your data lake: Delta Lake brings transactional integrity to your data lake operations. This is crucial when you need to ensure data consistency and reliability, especially in scenarios involving concurrent reads and writes.

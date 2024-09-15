@@ -22,112 +22,221 @@ The DATE Data type is used to store date values in this format "YYYY-MM-DD"
 ### Boolean
 
 
-## Vocab
+
+## Views:
+constructs a virtual table that has no physical data based on the result-set of a SQL query
+
+Syntax:
+`CREATE [ OR REPLACE ] VIEW [ IF NOT EXISTS ] view_name AS query; `
+
+Example:
+```sql
+create view course_project.citibike.vw_bike_data as select * from course_project.citibike.jc_bike_data_22 where start_station_id = 'JC014';
+```
+
+Deleting view:
+`DROP VIEW view_name`
+## SQL Vocab
 
 ### SELECT
-* used to select data
-* `select * from ___
+- Used to retrieve data from one or more tables
+- Basic syntax: `SELECT column1, column2, ... FROM table_name;`
+- To select all columns: `SELECT * FROM table_name;`
 
-if you want unique data use `select distinct`
-#### WHERE
-Shows all entries that are true under a specific clause
-`select * from jc_bike_data where start_station_id = 'HB103'`
-##### IN
-is used to specify multiple values in the where clause
-it allows you to retrieve rows where a colum value matches any value in a specified list
-```
-SELECT col1, col2, ...
-FROM table_name
-WHERE column_name IN (value1, value2, ...); 
+### DISTINCT
+- Used with SELECT to return only unique values
+- Syntax: `SELECT DISTINCT column1, column2, ... FROM table_name;`
 
-select * where start_station_id IN ('jc023, 'jc019', 'jc093');
+Example:
+```sql
+SELECT DISTINCT city FROM customers;
 ```
 
-##### LIKE
-You can search the table to search if a field contains specific data, for example if you want to search if an address containst 'St'
-`SELECT * FROM station_data where station_name like '%St%;`
-* the %St% means the field can have anything before and after the St to be shown
+### union
+returns the result of subquery1 and the rows of subquery 2
+```sql
+(select * from jc_bike_data order by started_at asc limit 5)
+union
+(select * from jc_bike_data order by started_at desc limit 5)
+```
 
-#### DELETE FROM
-will let you delete rows that match your designation. if nothing is desginated, all rows will be deleted.
-`DELETE FROM temp_station_data where station_id = 'HB203`
+### intersect 
+returns the result of subquery1 that overlap with the rows of subquery 2
+```sql
+(select * from jc_bike_data where started_at between '2022-01-01 00:10:00.000' and '2022-01-01 00:12:00.000')
+intersect
+(select * from jc_bike_data where started_at between '2022-01-01 00:11:00.000' and '2022-01-01 00:19:00.000')
+```
+
+except
+returns the result of subquery1 which are not in subquery 2
+```sql
+(select * from jc_bike_data where started_at between '2022-01-01 00:10:00.000' and '2022-01-01 00:12:00.000')
+except
+(select * from jc_bike_data where started_at between '2022-01-01 00:11:00.000' and '2022-01-01 00:19:00.000')
+```
+### WHERE
+- Filters data based on specified conditions
+- Syntax: `SELECT column1, column2, ... FROM table_name WHERE condition;`
+
+Example:
+```sql
+SELECT * FROM jc_bike_data WHERE start_station_id = 'HB103';
+```
+
+### IN
+- Specifies multiple values in a WHERE clause
+- Syntax: `WHERE column_name IN (value1, value2, ...);`
+
+Example:
+```sql
+SELECT * FROM jc_bike_data WHERE start_station_id IN ('jc023', 'jc019', 'jc093');
+```
+
+### LIKE
+- Used for pattern matching in a WHERE clause
+- `%` represents zero, one, or multiple characters
+- `_` represents a single character
+
+Example:
+```sql
+SELECT * FROM station_data WHERE station_name LIKE '%St%';
+```
+
+### DELETE FROM
+- Removes rows from a table that match specified conditions
+- If no condition is specified, all rows will be deleted
+- Syntax: `DELETE FROM table_name WHERE condition;`
+
+Example:
+```sql
+DELETE FROM temp_station_data WHERE station_id = 'HB203';
+```
+
 ### Catalog
-* You can specify a catalog by using catalog.schema.table
-	* `select * from samples.nyctaxi.trips`
-* Or by typing `use catalog _____`
-*   `show catalogs;`
-* `describe catalog extended dbw_sql_udemytutorial;`
-* You can create a catalog in the data tab and you need admin priv.
+- Specifies the database
+- Can be referenced using `catalog.schema.table`
+- Or by using `USE catalog catalog_name;`
 
-### Schema
+Examples:
+```sql
+SELECT * FROM samples.nyctaxi.trips;
 
-### CREATE 
-You can create a table and copy another table with the same query.
-* `CREATE TABLE TEST_2 AS SELECT * FROM TEST_1`
-
-### CAST 
-CAST is a SQL function used to convert data from one data type to another. It's useful when you need to change the data type of a column or expression in your query results.
-- **Purpose:** Convert data between compatible data types.
-- **Syntax:** `CAST(expression AS data_type)`
-#### Common Use Cases
-- Converting numbers to strings (or vice versa)
-- Changing date formats
-- Adjusting precision of numeric data
-- Converting Boolean values to integers
-#### Examples
-Converting a string to a date
-`SELECT CAST('2023-09-12' AS DATE) AS converted_date;
-Changing a number to a string
-`SELECT CAST(12345 AS VARCHAR(10)) AS number_as_string;
-Converting a date to a string
-`SELECT CAST(GETDATE() AS VARCHAR(23)) AS date_as_string;`
-
-### TRUNCATE
-you can delete all rows from a table but keep the schema by using truncate
-`truncate table _tablename_;`
-
-### ALTER
-alter table command can 
-* `RENAME TO`
-* `ADD COLUMN _type_`
-* `DROP COLUMN`
-
-### IDENTITY (auto incrementing)
-1. `IDENTITY`: This is a crucial part for auto-incrementing.
-    - When you add `IDENTITY` to a column definition, SQL Server automatically generates unique, incrementing values for this column whenever a new row is inserted.
-    - By default, it starts at 1 and increments by 1 for each new row.
-    - You don't need to specify a value for this column when inserting data; SQL Server handles it automatically.
-2. `NULL` / `NOT NULL`:
-    - `NOT NULL` means the column must always have a value.
-    - `NULL` means the column can have no value (i.e., be empty).
-So, let's compare:
-1. `GeographyKey INT IDENTITY NOT NULL` (in DimGeography table)
-    - This creates an auto-incrementing primary key.
-    - Every new row will automatically get a unique, incrementing integer value.
-    - This column cannot be empty (NOT NULL).
-    - Example: If you insert three rows without specifying GeographyKey, they might get values 1, 2, and 3 automatically.
-2. `GeographyKey INT NULL` (in DimCustomer table)
-    - This is a regular integer column that can contain NULL values.
-    - It doesn't auto-increment.
-    - You need to manually specify the value when inserting data, or it will be NULL.
-    - This is used as a foreign key to reference the DimGeography table.
-
-To illustrate:
-```
--- This will auto-generate GeographyKey values
-INSERT INTO DimGeography (StreetAddress, City, PostalCode, CountryRegion)
-VALUES ('123 Main St', 'Springfield', '12345', 'USA');
-
--- The GeographyKey must be specified (or left NULL)
-INSERT INTO DimCustomer (GeographyKey, CustomerName, EmailAddress)
-VALUES (1, 'John Doe', 'john@example.com');
+USE catalog dbw_sql_udemytutorial;
 ```
 
-In the DimGeography insert, you don't specify GeographyKey because it's an IDENTITY column. In the DimCustomer insert, you do need to specify it (or omit it to allow NULL) because it's not an IDENTITY column in this table.
+### CREATE
+- Used to create new tables
+- Can copy data from an existing table
 
-------------------------------------------------------------------
+Example:
+```sql
+CREATE TABLE test_2 AS SELECT * FROM test_1;
+```
 
-## Built-in Functions
+### CAST
+- Converts data from one type to another
+- Syntax: `CAST(expression AS data_type)`
+
+Examples:
+```sql
+SELECT CAST('2023-09-12' AS DATE) AS converted_date;
+SELECT CAST(12345 AS VARCHAR(10)) AS number_as_string;
+SELECT CAST(GETDATE() AS VARCHAR(23)) AS date_as_string;
+```
+
+#### TRUNCATE
+- Deletes all rows from a table but keeps the table structure
+- Syntax: `TRUNCATE TABLE table_name;`
+
+#### ALTER
+- Modifies an existing table structure
+- Can rename tables, add/drop columns, etc.
+
+Examples:
+```sql
+ALTER TABLE old_table_name RENAME TO new_table_name;
+ALTER TABLE table_name ADD COLUMN new_column data_type;
+ALTER TABLE table_name DROP COLUMN column_name;
+```
+
+#### IDENTITY
+- Used for auto-incrementing columns in SQL Server
+- Automatically generates unique, incrementing values
+
+Example:
+```sql
+CREATE TABLE example_table (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    name VARCHAR(50)
+);
+```
+
+### CASE
+- Used for conditional processing in SQL
+- Similar to if-then-else statements in other programming languages
+- Can be used in SELECT, WHERE, and ORDER BY clauses
+
+Syntax:
+```sql
+CASE
+    WHEN condition1 THEN result1
+    WHEN condition2 THEN result2
+    ...
+    ELSE result
+END
+```
+
+Examples:
+
+1. Simple CASE statement:
+```sql
+SELECT 
+    order_id,
+    order_total,
+    CASE
+        WHEN order_total < 50 THEN 'Small Order'
+        WHEN order_total >= 50 AND order_total < 100 THEN 'Medium Order'
+        ELSE 'Large Order'
+    END AS order_size
+FROM orders;
+```
+
+2. CASE in WHERE clause:
+```sql
+SELECT *
+FROM employees
+WHERE
+    CASE
+        WHEN department = 'Sales' THEN salary > 50000
+        WHEN department = 'IT' THEN salary > 60000
+        ELSE salary > 40000
+    END;
+```
+
+3. CASE with aggregate functions:
+```sql
+SELECT 
+    department,
+    AVG(CASE WHEN gender = 'Male' THEN salary END) AS avg_male_salary,
+    AVG(CASE WHEN gender = 'Female' THEN salary END) AS avg_female_salary
+FROM employees
+GROUP BY department;
+```
+4. CASE - create colum with varied entries with a case/if/switch statement:
+```sql
+SELECT 
+ride_id,
+trip_duration,
+CASE WHEN trip_duration > 60 then 'Long'
+	WHEN trip_duration >30 then 'Medium'
+	ELSE 'Short'
+	end as trip_category
+from trip_duration; 
+```
+
+
+Remember that the CASE statement returns the result of the first condition that evaluates to true. If no conditions are true and there's no ELSE clause, it returns NULL.## Built-in Functions
 ### String Functions
 * Upper() takes a string and turns all letters in it uppercase. 
 * Lower() takes a string and turns all letters in it lowercase. 
@@ -136,11 +245,125 @@ In the DimGeography insert, you don't specify GeographyKey because it's an IDENT
 * right/left(table,number) returns the rightmost / leftmost length using your desired length set inside the parenthesis
 * CONCAT( returns the concatenation/combination of the columns
 	* `select concat(start_station_id, '-', end_station_id) as start_and_stop from jc_bike_data_22 `
-#### Numerical Functions
+### Numerical Functions
 * + add
 * * multiply
 * / divide
 * round(columsmath, 1) takes your math for your first arg and an int as the second arg. The second arg determines how many decimal points you round to. 
+
+#### Date functions
+Say you want to create a table that shows how much time elapsed. If you have a start and end time you can do this:
+`DATEDIFF(interval, start_date, end_date)`
+`create table trip_duration as select ride_id, datediff(MINUTE, started_at, ended_at) as trip_duration from jc_bike_data_22`
+
+#### GROUP BY
+allows you to group rows based on the values in one or more colums. It is used in conjunction with aggregate functions to perform calculations on those groups.
+
+Syntax: 
+```sql
+SELECT non_aggregated_column(s), aggregated_column(s)
+FROM table_bame
+WHERE condition --optional
+GROUP BY non_aggregated_columns(s);
+```
+
+`SELECT ride_id, count(trip_duration) from trip_duration group by ride_id` 
+^ this will show the ride id column and another column that shows how many trip_durations each trip has (it is 1).
+
+```sql
+SELECT department, job_title, AVG(salary) as avg_salary
+FROM employees
+GROUP BY department, job_title;
+```
+
+Here's what happens step by step:
+
+1. **Grouping Rows**:
+   - SQL first groups the rows based on unique combinations of the values in the GROUP BY columns (department and job_title).
+   - Each unique combination forms a group.
+
+2. **Selecting Columns**:
+   - For each group, SQL selects the values of department and job_title. These will be the same for all rows in the group.
+
+3. **Aggregating**:
+   - SQL then applies the aggregate function (AVG in this case) to the specified column (salary) for each group.
+
+4. **Result Creation**:
+   - SQL creates one output row for each group, containing:
+     - The group's department
+     - The group's job_title
+     - The calculated average salary for that group
+### Visualization:
+
+Original Data:
+```
+| department | job_title | salary |
+|------------|-----------|--------|
+| Sales      | Manager   | 70000  |
+| Sales      | Rep       | 50000  |
+| Sales      | Rep       | 55000  |
+| IT         | Manager   | 80000  |
+| IT         | Developer | 65000  |
+| IT         | Developer | 60000  |
+```
+
+Grouping Process:
+1. Group (Sales, Manager): [70000]
+2. Group (Sales, Rep): [50000, 55000]
+3. Group (IT, Manager): [80000]
+4. Group (IT, Developer): [65000, 60000]
+
+Result After Aggregation:
+```
+| department | job_title | avg_salary |
+|------------|-----------|------------|
+| Sales      | Manager   | 70000      |
+| Sales      | Rep       | 52500      |
+| IT         | Manager   | 80000      |
+| IT         | Developer | 62500      |
+```
+
+Each row in the result represents a group from the original data, with the average salary calculated for that group.
+
+### HAVING 
+
+The HAVING clause is used in conjunction with GROUP BY to filter groups based on aggregated results. It's necessary because WHERE cannot be used with aggregate functions.
+
+#### Key Points:
+
+1. HAVING is used to filter groups, whereas WHERE filters individual rows.
+2. HAVING is applied after GROUP BY, while WHERE is applied before GROUP BY.
+3. HAVING can use aggregate functions, but WHERE cannot.
+
+#### Syntax:
+`SELECT column1, column2, AGGREGATE_FUNCTION(column3) FROM table_name GROUP BY column1, column2 HAVING condition;`
+#### Examples:
+1. Find departments with average salary above 60000:
+`SELECT department, AVG(salary) as avg_salary FROM employees GROUP BY department HAVING AVG(salary) > 60000;`
+
+2. Select product categories with more than 100 total sales:
+`SELECT category, SUM(sales) as total_sales FROM products GROUP BY category HAVING SUM(sales) > 100;`
+
+3. Combining WHERE and HAVING:
+`SELECT department, job_title, AVG(salary) as avg_salary FROM employees WHERE hire_date > '2020-01-01' GROUP BY department, job_title HAVING AVG(salary) > 50000;`
+
+This query first filters for employees hired after Jan 1, 2020 (using WHERE), then groups by department and job title, and finally filters for groups with an average salary above 50000 (using HAVING).
+
+#### Why HAVING is Necessary:
+
+- WHERE filters rows before they are grouped and aggregated.
+- HAVING filters groups after aggregation.
+- You cannot use aggregate functions in a WHERE clause.
+
+Incorrect (will cause an error):
+`SELECT department, AVG(salary) as avg_salary FROM employees WHERE AVG(salary) > 60000  -- This will cause an error GROUP BY department;`
+
+Correct:
+`SELECT department, AVG(salary) as avg_salary FROM employees GROUP BY department HAVING AVG(salary) > 60000;`
+
+#### Remember:
+- Use WHERE for filtering individual rows based on column values.
+- Use HAVING for filtering groups based on the results of aggregate functions.
 ## Auth
 Serverless SQL pool authentication refers to how users prove their identity when connecting to the endpoint. Two types of authentication are supported:
 
@@ -196,11 +419,9 @@ You can associate a security principal with an access level for files and direct
 There are two kinds of access control lists:
 
 - **Access ACLs**
-    
     Controls access to an object. Files and directories both have access ACLs.
     
 - **Default ACLs**
-    
     Are templates of ACLs associated with a directory that determine the access ACLs for any child items that are created under that directory. Files do not have default ACLs.
     
 
@@ -210,11 +431,11 @@ The permissions on a container object are Read, Write, and Execute, and they can
 
 **Levels of permissions**
 
-|Permission|File|Directory|
-|---|---|---|
-|Read (R)|Can read the contents of a file|Requires Read and Execute to list the contents of the directory|
-|Write (W)|Can write or append to a file|Requires Write and Execute to create child items in a directory|
-|Execute (X)|Does not mean anything in the context of Data Lake Storage Gen2|Required to traverse the child items of a directory|
+| Permission  | File                                                            | Directory                                                       |
+| ----------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| Read (R)    | Can read the contents of a file                                 | Requires Read and Execute to list the contents of the directory |
+| Write (W)   | Can write or append to a file                                   | Requires Write and Execute to create child items in a directory |
+| Execute (X) | Does not mean anything in the context of Data Lake Storage Gen2 | Required to traverse the child items of a directory             |
 ## Guidelines in setting up ACLs
 
 Always use Microsoft Entra security groups as the assigned principal in an ACL entry. Resist the opportunity to directly assign individual users or service principals. Using this structure will allow you to add and remove users or service principals without the need to reapply ACLs to an entire directory structure. Instead, you can just add or remove users and service principals from the appropriate Microsoft Entra security group.
