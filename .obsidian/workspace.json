@@ -61,14 +61,22 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Delta Lake.md",
+                "file": "Data Ingestion.md",
                 "mode": "source",
                 "source": false
               }
             }
+          },
+          {
+            "id": "31b3f5731acf73c3",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -97,7 +105,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "delta",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -119,7 +127,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "d2eb0c01751dfe73",
@@ -135,7 +144,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Delta Lake.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -152,7 +160,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Delta Lake.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -174,9 +181,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Delta Lake.md"
-              }
+              "state": {}
             }
           },
           {
@@ -218,14 +223,21 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "85cb2fda14bfa300",
+  "active": "31b3f5731acf73c3",
   "lastOpenFiles": [
     "Data Engineering Notes.md",
-    "SQL.md",
+    "Azure Synapse.md",
+    "Pasted image 20240915181049.png",
+    "Pasted image 20240915180527.png",
+    "Apache Spark.md",
+    "SparkSQL.md",
+    "Data Pipelines.md",
+    "Azure Databricks.md",
+    "Data Ingestion.md",
     "Delta Lake.md",
+    "SQL.md",
     "databricks.md",
     "Unity Catalog.md",
-    "SparkSQL.md",
     "Pasted image 20240911152450.png",
     "Pasted image 20240906143943.png",
     "Pasted image 20240904201734.png",
@@ -233,7 +245,6 @@
     "Data Warehouse.md",
     "Data Factory.md",
     "Azure Databases.md",
-    "Apache Spark.md",
     "Data Lake.md",
     "Fullstack NextJS List.md",
     "Database.md",
@@ -249,13 +260,6 @@
     "Vercel.md",
     "Prisma.md",
     "Pasted image 20240209135900.png",
-    "Pasted image 20240207140952.png",
-    "Pasted image 20240207123809.png",
-    "OAuth.md",
-    "NextUI.md",
-    "nexst.md",
-    "NodeJS.md",
-    "Ref.md",
     "Untitled 2.canvas",
     "Untitled 1.canvas"
   ]
