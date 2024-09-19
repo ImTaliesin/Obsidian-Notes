@@ -37,7 +37,30 @@ create view course_project.citibike.vw_bike_data as select * from course_project
 Deleting view:
 `DROP VIEW view_name`
 ## SQL Vocab
+### OPENROWSET
+OPENROWSET allows reading remote files without loading them into tables or creating external tables. Here are the key points:
+- Enables reading files from Azure Storage
+- Returns file contents as a set of rows with columns
+- Can be used in the FROM clause of a SELECT statement like a table or view
+- Supports reading files in CSV, Parquet, and Delta formats
+#### Syntax
 
+The basic syntax for OPENROWSET includes two mandatory parameters:
+
+1. BULK: Specifies the URL of the file or folder in Azure storage
+2. FORMAT: Indicates the file format (CSV, Parquet, or Delta)
+
+#### Example:
+
+```
+SELECT * FROM OPENROWSET(
+BULK 'https://storage_account.blob.core.windows.net/container/file.csv',  FORMAT = 'CSV' ) 
+AS [result]
+```
+#### Additional Parameters
+For CSV files, optional parameters can be specified, such as:
+- Delimiter
+- Whether the file contains a header row
 ### SELECT
 - Used to retrieve data from one or more tables
 - Basic syntax: `SELECT column1, column2, ... FROM table_name;`
@@ -364,6 +387,61 @@ Correct:
 #### Remember:
 - Use WHERE for filtering individual rows based on column values.
 - Use HAVING for filtering groups based on the results of aggregate functions.
+## Create an external data source
+```sql
+create external data source nyc_taxi_data
+with (
+	LOCATION = 'abfss:nyc-taxi-data@synapseudemycoursedatalakes.dfs.core.windows.net/'
+)
+```
+## UTF8 Characters/Collation
+- COLLATE determines how string data is compared and sorted in a database.
+- Strings can be stored in different ways. You can apply collation to a column in two different ways.
+```
+--Collate data per column
+SELECT
+    *
+FROM
+    OPENROWSET(
+        BULK 'https://synapsecoursedatalakes.dfs.core.windows.net/nyc-taxi-data/raw/taxi_zone.csv',
+        FORMAT = 'CSV',
+        PARSER_VERSION = '2.0',
+        HEADER_ROW=TRUE
+    )
+    WITH (
+        LocationID SMALLINT,
+        Borough VARCHAR(15) COLLATE Latin1_General_100_CI_AI_SC_UTF8,
+        Zone VARCHAR(50) COLLATE Latin1_General_100_CI_AI_SC_UTF8,
+        service_zone VARCHAR(15) COLLATE Latin1_General_100_CI_AI_SC_UTF8)
+    AS fields
+```
+
+```
+--Collate the entire database
+SELECT
+    *
+FROM
+    OPENROWSET(
+        BULK 'https://synapsecoursedatalakes.dfs.core.windows.net/nyc-taxi-data/raw/taxi_zone.csv',
+        FORMAT = 'CSV',
+        PARSER_VERSION = '2.0',
+        HEADER_ROW=TRUE
+    )
+    WITH (
+        LocationID SMALLINT,
+        Borough VARCHAR(15) COLLATE Latin1_General_100_CI_AI_SC_UTF8,
+        Zone VARCHAR(50) COLLATE Latin1_General_100_CI_AI_SC_UTF8,
+        service_zone VARCHAR(15) COLLATE Latin1_General_100_CI_AI_SC_UTF8)
+    AS fields
+
+CREATE DATABASE nyc_taxi_discovery;
+
+USE nyc_taxi_discovery;
+
+ALTER DATABASE nyc_taxi_discovery COLLATE Latin1_General_100_CI_AI_SC_UTF8;
+
+SELECT name, collation_name FROM sys.databases;
+```
 ## Auth
 Serverless SQL pool authentication refers to how users prove their identity when connecting to the endpoint. Two types of authentication are supported:
 
