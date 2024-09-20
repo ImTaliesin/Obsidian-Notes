@@ -23,11 +23,38 @@ The DATE Data type is used to store date values in this format "YYYY-MM-DD"
 
 
 
-## Explore JSON using CSV parser
+## Explore JSON using OPENJSON
 - `FIELDTERMINATOR = '0x0b',`: Sets the field delimiter (vertical tab in this case).
 - `FIELDQUOTE = '0x0b',`: Sets the field quote character (also vertical tab).
 - `ROWTERMINATOR = '0x0a'`: Sets the row terminator (newline character).
 * `jsonDoc NVARCHAR(MAX)`: Defines a column named 'jsonDoc' of type NVARCHAR(MAX) to hold the entire JSON document.
+
+* OPENJSON is a table-valued function that parses JSON text and returns objects and properties from the JSON input as rows and columns.
+	* - OPENROWSET reads the JSON file into a single NVARCHAR(MAX) column.
+	- CROSS APPLY is used with OPENJSON to unpack the JSON data.
+	- The inner WITH clause in OPENJSON specifies the structure of the JSON data, mapping JSON properties to SQL columns.
+```SQL
+--View structured json data
+select rate_code, rate_code_id
+from OPENROWSET(
+    BULK 'rate_code_multi_line.json',
+    data_source = 'nyc_taxi_data_raw',
+    format = 'CSV',
+    PARSER_VERSION = '1.0',
+    FIELDTERMINATOR = '0x0b',
+    FIELDQUOTE = '0x0b',
+    ROWTERMINATOR = '0x0b'
+)
+WITH (
+    jsonDoc NVARCHAR(MAX)
+) AS payment_type
+CROSS APPLY OPENJSON (jsonDoc)
+WITH(
+    rate_code_id SMALLINT,
+    rate_code VARCHAR(20)
+)
+```
+
 ```sql
 SELECT *
 	FROM OPENROWSET(
@@ -61,6 +88,110 @@ FROM OPENROWSET(
 	jsonDoc NVARCHAR(MAX)
 	) as payment_type;
 ```
+## How to select folders/subfolders/subfiles
+
+CREATE EXTERNAL DATA SOURCE nyc_taxi_data_raw
+WITH (
+    LOCATION = 'https://synapsecoursedatalakes.dfs.core.windows.net/nyc-taxi-data'
+)
+
+This statement creates an external data source named 'nyc_taxi_data_raw'.
+The LOCATION parameter specifies the root URL of the data lake.
+This allows you to use relative paths in subsequent OPENROWSET calls.
+
+### Selecting Data from a Specific Folder
+```
+SELECT TOP 100 *
+FROM OPENROWSET(
+    BULK 'trip_data_green_csv/year=2020/month=01/*',
+    DATA_SOURCE = 'nyc_taxi_data_raw',
+    FORMAT = 'CSV',
+    PARSER_VERSION = '2.0',
+    HEADER_ROW = TRUE
+) AS [result]
+```
+
+This query selects data from all files in the January 2020 folder.
+The * wildcard in the BULK path means it will read all files in that folder.
+DATA_SOURCE refers to the previously created external data source.
+
+### Selecting Data from Multiple Subfolders
+```
+SELECT TOP 100 *
+FROM OPENROWSET(
+    BULK 'trip_data_green_csv/year=*/month=*/*.csv',
+    DATA_SOURCE = 'nyc_taxi_data_raw',
+    FORMAT = 'CSV',
+    PARSER_VERSION = '2.0',
+    HEADER_ROW = TRUE
+) AS [result]
+```
+This query selects data from all CSV files across all years and months.
+The * wildcards in 'year=' and 'month=' allow it to match any year and month subfolder.
+
+### Counting Records in Specific Subfolders
+```
+SELECT
+result.filename() AS file_name,
+count(1) as record_count
+FROM OPENROWSET(
+    BULK ('trip_data_green_csv/year=2020/month=01/*.csv', 'trip_data_green_csv/year=2020/month=03/*.csv'),
+    DATA_SOURCE = 'nyc_taxi_data_raw',
+    FORMAT = 'CSV',
+    PARSER_VERSION = '2.0',
+    HEADER_ROW = TRUE
+) AS [result]
+group by result.filename()
+order by result.filename()
+```
+
+```
+Using filepath() Function to Extract Folder Information
+sqlCopySELECT
+    result.filename() AS file_name,
+    result.filepath(1) as year,
+    result.filepath(2) as month,
+    count(1) as record_count
+FROM OPENROWSET(
+    BULK 'trip_data_green_csv/year=*/month=*/*.csv',
+    DATA_SOURCE = 'nyc_taxi_data_raw',
+    FORMAT = 'CSV',
+    PARSER_VERSION = '2.0',
+    HEADER_ROW = TRUE
+) AS [result] 
+WHERE result.filename() IN ('green_tripdata_2020-01.csv', 'green_tripdata_2021-01.csv')
+GROUP BY result.filename(), result.filepath(1), result.filepath(2)
+ORDER BY result.filename(), result.filepath(1), result.filepath(2)```
+```
+This query demonstrates several advanced techniques for working with external data:
+
+filepath() function:
+result.filepath(1) extracts the first folder name in the path (year in this case).
+result.filepath(2) extracts the second folder name in the path (month in this case).
+This is useful for folder structures that represent data hierarchies.
+
+Wildcard usage in BULK path:
+'trip_data_green_csv/year=*/month=*/*.csv' allows selecting all CSV files from all year and month combinations.
+
+filename() function:
+result.filename() returns the name of each file being processed.
+Used in both SELECT and WHERE clauses.
+
+Filtering specific files:
+The WHERE clause filters for specific filenames, allowing precise control over which files are processed.
+
+Grouping and aggregation:
+The GROUP BY clause includes all non-aggregated columns from the SELECT clause.
+This allows for counting records per unique combination of filename, year, and month.
+
+Ordering results:
+The ORDER BY clause sorts the results by filename, year, and then month.
+
+Key Points:
+The filepath() function is powerful for extracting information from the file path itself.
+Combining wildcards in the BULK path with specific filename filtering in the WHERE clause provides flexible yet precise data selection.
+When using functions like filepath() in the SELECT clause, remember to include them in the GROUP BY clause as well.
+This approach allows for efficient analysis of data distributed across a hierarchical folder structure.
 ## Views:
 constructs a virtual table that has no physical data based on the result-set of a SQL query
 
