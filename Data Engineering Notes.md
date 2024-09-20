@@ -1,4 +1,4 @@
-[[Database]] [[SQL]] [[Data Lake]] [[Apache Spark]] [[Delta Lake]] [[Data Warehouse]] [[Data Factory]] [[databricks]] [[Azure Synapse]] 
+[[Database]] [[SQL]] [[Data Lake]] [[Apache Spark]] [[Delta Lake]] [[Data Warehouse]] [[Data Factory]] [[databricks]] [[Azure Synapse]] [[External Data Source]]
 ## Vocab:
 ### Relational Table, data lake: data stored in files, data warehouse,  data lakehouse, data pipeline, key vaults implementation with pipeline
 

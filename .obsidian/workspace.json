@@ -11,8 +11,12 @@
             "id": "71c4ca83aff589db",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "SQL.md",
+                "mode": "source",
+                "source": false
+              }
             }
           },
           {
@@ -143,6 +147,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "SQL.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -159,6 +164,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "SQL.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -180,7 +186,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "SQL.md"
+              }
             }
           },
           {
@@ -224,6 +232,7 @@
   },
   "active": "71c4ca83aff589db",
   "lastOpenFiles": [
+    "External Data Source.md",
     "Data Engineering Notes.md",
     "SQL.md",
     "databricks.md",

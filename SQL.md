@@ -23,6 +23,44 @@ The DATE Data type is used to store date values in this format "YYYY-MM-DD"
 
 
 
+## Explore JSON using CSV parser
+- `FIELDTERMINATOR = '0x0b',`: Sets the field delimiter (vertical tab in this case).
+- `FIELDQUOTE = '0x0b',`: Sets the field quote character (also vertical tab).
+- `ROWTERMINATOR = '0x0a'`: Sets the row terminator (newline character).
+* `jsonDoc NVARCHAR(MAX)`: Defines a column named 'jsonDoc' of type NVARCHAR(MAX) to hold the entire JSON document.
+```sql
+SELECT *
+	FROM OPENROWSET(
+		BULK'payment_type.json',
+		DATA_SOURCE = 'nyx_taxi_data_raw',
+		FORMAT = 'CSV',
+		PARSER_VERSION = '2.0',
+		FIELDTERMINATOR = '0x0b',
+		FIELDQUOTE = '0x0b',
+		ROWTERMINATOR = '0x0a'
+	)
+	WITH (
+	jsonDoc NVARCHAR(MAX)
+	) as payment_type;
+```
+
+use this query to find the info from the json doc
+```sql
+SELECT  JSON_VALUE (jsonDOc, '$.payment_type') payment_type,
+		JSON_VALUE (jsonDOc, '$.payment_type_desc') payment_typedesc,
+FROM OPENROWSET(
+		BULK'payment_type.json',
+		DATA_SOURCE = 'nyx_taxi_data_raw',
+		FORMAT = 'CSV',
+		PARSER_VERSION = '2.0',
+		FIELDTERMINATOR = '0x0b',
+		FIELDQUOTE = '0x0b',
+		ROWTERMINATOR = '0x0a'
+	)
+	WITH (
+	jsonDoc NVARCHAR(MAX)
+	) as payment_type;
+```
 ## Views:
 constructs a virtual table that has no physical data based on the result-set of a SQL query
 
