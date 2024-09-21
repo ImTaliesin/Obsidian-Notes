@@ -130,7 +130,7 @@ This query selects data from all CSV files across all years and months.
 The * wildcards in 'year=' and 'month=' allow it to match any year and month subfolder.
 
 ### Counting Records in Specific Subfolders
-```
+``` sql
 SELECT
 result.filename() AS file_name,
 count(1) as record_count
@@ -144,10 +144,9 @@ FROM OPENROWSET(
 group by result.filename()
 order by result.filename()
 ```
-
-```
 Using filepath() Function to Extract Folder Information
-sqlCopySELECT
+```sql
+SELECT
     result.filename() AS file_name,
     result.filepath(1) as year,
     result.filepath(2) as month,
@@ -161,8 +160,9 @@ FROM OPENROWSET(
 ) AS [result] 
 WHERE result.filename() IN ('green_tripdata_2020-01.csv', 'green_tripdata_2021-01.csv')
 GROUP BY result.filename(), result.filepath(1), result.filepath(2)
-ORDER BY result.filename(), result.filepath(1), result.filepath(2)```
+ORDER BY result.filename(), result.filepath(1), result.filepath(2)
 ```
+
 This query demonstrates several advanced techniques for working with external data:
 
 filepath() function:

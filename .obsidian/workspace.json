@@ -13,13 +13,74 @@
             "state": {
               "type": "markdown",
               "state": {
+                "file": "Data Engineering Notes.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "e48a3f471718d036",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Engineering Notes.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "3b3c3c88bf0d71e4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Engineering Notes.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "afd2a2d058dad6ef",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Engineering Notes.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "85cb2fda14bfa300",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Ingestion.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "31b3f5731acf73c3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
                 "file": "SQL.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -48,7 +109,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "dataframe",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -170,30 +231,30 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "71c4ca83aff589db",
+  "active": "31b3f5731acf73c3",
   "lastOpenFiles": [
     "External Data Source.md",
     "Data Engineering Notes.md",
-    "SQL.md",
-    "databricks.md",
-    "Data Factory.md",
-    "Apache Spark.md",
-    "Data Lake.md",
     "Azure Synapse.md",
     "Pasted image 20240915181049.png",
     "Pasted image 20240915180527.png",
+    "Apache Spark.md",
     "SparkSQL.md",
     "Data Pipelines.md",
     "Azure Databricks.md",
     "Data Ingestion.md",
     "Delta Lake.md",
+    "SQL.md",
+    "databricks.md",
     "Unity Catalog.md",
     "Pasted image 20240911152450.png",
     "Pasted image 20240906143943.png",
     "Pasted image 20240904201734.png",
     "Pasted image 20240903232241.png",
     "Data Warehouse.md",
+    "Data Factory.md",
     "Azure Databases.md",
+    "Data Lake.md",
     "Fullstack NextJS List.md",
     "Database.md",
     "Pasted image 20240830192309.png",
