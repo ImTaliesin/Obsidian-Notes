@@ -73,7 +73,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SQL.md",
+                "file": "External Data Source.md",
                 "mode": "source",
                 "source": false
               }
@@ -148,7 +148,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SQL.md",
+                "file": "External Data Source.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -165,7 +165,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SQL.md",
+                "file": "External Data Source.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -188,7 +188,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SQL.md"
+                "file": "External Data Source.md"
               }
             }
           },
@@ -233,6 +233,7 @@
   },
   "active": "31b3f5731acf73c3",
   "lastOpenFiles": [
+    "SQL.md",
     "External Data Source.md",
     "Data Engineering Notes.md",
     "Azure Synapse.md",
@@ -244,7 +245,6 @@
     "Azure Databricks.md",
     "Data Ingestion.md",
     "Delta Lake.md",
-    "SQL.md",
     "databricks.md",
     "Unity Catalog.md",
     "Pasted image 20240911152450.png",
