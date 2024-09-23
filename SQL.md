@@ -23,6 +23,8 @@ The DATE Data type is used to store date values in this format "YYYY-MM-DD"
 
 
 
+## Check for duplicate entries
+
 ## Explore JSON using OPENJSON
 - `FIELDTERMINATOR = '0x0b',`: Sets the field delimiter (vertical tab in this case).
 - `FIELDQUOTE = '0x0b',`: Sets the field quote character (also vertical tab).
@@ -211,7 +213,7 @@ OPENROWSET allows reading remote files without loading them into tables or creat
 - Enables reading files from Azure Storage
 - Returns file contents as a set of rows with columns
 - Can be used in the FROM clause of a SELECT statement like a table or view
-- Supports reading files in CSV, Parquet, and Delta formats
+- Supports reading files in [[CSV]], [[Parquet]], and [[Delta]] formats
 #### Syntax
 
 The basic syntax for OPENROWSET includes two mandatory parameters:
