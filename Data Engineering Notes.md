@@ -1,4 +1,6 @@
 [[Database]] [[SQL]] [[Data Lake]] [[Apache Spark]] [[Delta Lake]] [[Data Warehouse]] [[Data Factory]] [[databricks]] [[Azure Synapse]] [[External Data Source]]
+
+[[Data Engineering Raw-bronze-silver-gold pipeline]]
 ## Vocab:
 ### Relational Table, data lake: data stored in files, data warehouse,  data lakehouse, data pipeline, key vaults implementation with pipeline
 
