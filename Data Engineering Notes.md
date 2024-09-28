@@ -1,4 +1,4 @@
-[[Database]] [[SQL]] [[Data Lake]] [[Apache Spark]] [[Delta Lake]] [[Data Warehouse]] [[Data Factory]] [[databricks]] [[Azure Synapse]] [[External Data Source]]
+[[Database]] [[SQL]] [[Data Lake]] [[Apache Spark]] [[Delta Lake]] [[Data Warehouse]] [[Data Factory]] [[databricks]] [[Azure Synapse]] [[External Data Source]] [[stored procedure]]
 
 [[Data Engineering Raw-bronze-silver-gold pipeline]]
 
