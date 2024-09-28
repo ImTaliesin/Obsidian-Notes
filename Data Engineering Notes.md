@@ -1,6 +1,62 @@
 [[Database]] [[SQL]] [[Data Lake]] [[Apache Spark]] [[Delta Lake]] [[Data Warehouse]] [[Data Factory]] [[databricks]] [[Azure Synapse]] [[External Data Source]]
 
 [[Data Engineering Raw-bronze-silver-gold pipeline]]
+
+## Notes for Silver transformation
+### Business Requirements
+
+1. Encourage credit card payments
+    - Goal: 90% credit card payments, 10% cash payments
+    - Need to track current ratio of cash vs. card payments
+2. Run effective campaigns
+    - Analyze payment behavior by day of the week
+    - Identify weekday vs. weekend patterns
+3. Target specific boroughs
+    - Break down payment behavior by borough
+
+### Non-Functional Requirements
+
+1. Handle high data volume
+    - Hundreds of millions of trips per month
+    - Aggregate data in reporting/gold layer for quick refresh
+2. Incremental processing
+    - Ability to aggregate data for a single month in isolation
+3. Efficient data storage
+    - Partition data by year and month in gold layer
+4. Minimize data duplication
+    - Avoid multiple tables for similar metrics
+    - Use flags to indicate variations
+
+### Gold Table Structure
+
+Columns:
+
+- Year
+- Month
+- Trip Date
+- Borough
+- Trip Day (e.g., Monday, Tuesday)
+- Weekend Indicator
+- Cash Trip Count
+- Card Trip Count
+
+### Data Sources (Silver Layer)
+
+- Trip Data: Year, Month, Trip Date
+- Taxi Zone: Borough
+- Calendar: Day of the week
+- Payment Type: Cash/Card indicator
+
+### Data Derivation
+
+- Weekend Indicator: Derived from Trip Day (Saturday/Sunday)
+- Cash/Card Trip Count: Combine Trip Data and Payment Type
+
+### Next Steps
+
+Implementation of the defined structure and data processing logic.
+
+
 ## Vocab:
 ### Relational Table, data lake: data stored in files, data warehouse,  data lakehouse, data pipeline, key vaults implementation with pipeline
 
