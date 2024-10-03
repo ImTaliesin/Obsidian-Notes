@@ -8,91 +8,18 @@
         "type": "tabs",
         "children": [
           {
-            "id": "71c4ca83aff589db",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Data Engineering Notes.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "e48a3f471718d036",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Data Engineering Notes.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "3b3c3c88bf0d71e4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Data Engineering Notes.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "afd2a2d058dad6ef",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Data Engineering Notes.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "85cb2fda14bfa300",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Data Ingestion.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "31b3f5731acf73c3",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Data Engineering Notes.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "0e733bbf18208766",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Synapse Pipelines.md",
+                "file": "Apache Spark.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 6
+        ]
       }
     ],
     "direction": "vertical"
@@ -160,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Synapse Pipelines.md",
+                "file": "Apache Spark.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -177,7 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Synapse Pipelines.md",
+                "file": "Apache Spark.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -200,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Synapse Pipelines.md"
+                "file": "Apache Spark.md"
               }
             }
           },
@@ -243,46 +170,45 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "0e733bbf18208766",
+  "active": "0babdac6ca14d8a5",
   "lastOpenFiles": [
+    "Synapse Pipelines.md",
+    "Pasted image 20241001195754.png",
+    "Azure Synapse.md",
+    "Data Pipelines.md",
     "Pasted image 20241001032014.png",
     "Pasted image 20240930232330.png",
     "Pasted image 20240929201147.png",
     "Pasted image 20240929201132.png",
-    "Synapse Pipelines.md",
+    "Data Ingestion.md",
     "stored procedure.md",
-    "Pasted image 20240926185106.png",
     "Data Engineering Notes.md",
-    "Untitled 4.canvas",
     "Data Engineering Raw-bronze-silver-gold pipeline.md",
-    "Untitled 3.canvas",
-    "External Data Source.md",
+    "Untitled 4.canvas",
     "SQL.md",
-    "Azure Synapse.md",
+    "Untitled 3.canvas",
+    "Generics.md",
+    "Delta.md",
+    "Data Factory.md",
+    "External Data Source.md",
     "Pasted image 20240915181049.png",
     "Pasted image 20240915180527.png",
     "Apache Spark.md",
     "SparkSQL.md",
-    "Data Pipelines.md",
     "Azure Databricks.md",
-    "Data Ingestion.md",
     "Delta Lake.md",
     "databricks.md",
     "Unity Catalog.md",
     "Pasted image 20240911152450.png",
     "Pasted image 20240906143943.png",
     "Pasted image 20240904201734.png",
-    "Pasted image 20240903232241.png",
     "Data Warehouse.md",
-    "Data Factory.md",
     "Azure Databases.md",
     "Data Lake.md",
     "Fullstack NextJS List.md",
     "Database.md",
     "class.md",
     "NextJS.md",
-    "drizzle.md",
-    "Typescript.md",
     "Untitled 2.canvas",
     "Untitled 1.canvas"
   ]
