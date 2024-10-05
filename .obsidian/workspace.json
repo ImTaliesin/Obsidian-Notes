@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Apache Spark.md",
+                "file": "Synapse Link.md",
                 "mode": "source",
                 "source": false
               }
@@ -87,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Apache Spark.md",
+                "file": "Synapse Link.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Apache Spark.md",
+                "file": "Synapse Link.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Apache Spark.md"
+                "file": "Synapse Link.md"
               }
             }
           },
@@ -170,8 +170,13 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "0babdac6ca14d8a5",
+  "active": "31b3f5731acf73c3",
   "lastOpenFiles": [
+    "Pasted image 20241004145101.png",
+    "Pasted image 20241004144819.png",
+    "Apache Spark.md",
+    "Synapse Link.md",
+    "Pasted image 20241003092110.png",
     "Synapse Pipelines.md",
     "Pasted image 20241001195754.png",
     "Azure Synapse.md",
@@ -193,22 +198,18 @@
     "External Data Source.md",
     "Pasted image 20240915181049.png",
     "Pasted image 20240915180527.png",
-    "Apache Spark.md",
     "SparkSQL.md",
     "Azure Databricks.md",
     "Delta Lake.md",
     "databricks.md",
     "Unity Catalog.md",
     "Pasted image 20240911152450.png",
-    "Pasted image 20240906143943.png",
-    "Pasted image 20240904201734.png",
     "Data Warehouse.md",
     "Azure Databases.md",
     "Data Lake.md",
     "Fullstack NextJS List.md",
     "Database.md",
     "class.md",
-    "NextJS.md",
     "Untitled 2.canvas",
     "Untitled 1.canvas"
   ]

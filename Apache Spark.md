@@ -337,3 +337,13 @@ The following code example saves the dataFrame into a _parquet_ file in the da
 transformed_df.write.mode("overwrite").parquet('/transformed_data/orders.parquet')
 print ("Transformed data saved!")
 ```
+
+## Metadata Replication with Spark
+![[Pasted image 20241003092110.png]]
+* Metadata is replicated asynchronously
+* Supports only Parquet and CSV tables
+* Replicated tables cannot be updates by serverless sql pools
+* Secured at the underlying storage level
+* Databases names have to unique across all pools
+
+
