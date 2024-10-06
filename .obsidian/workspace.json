@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Synapse Link.md",
+                "file": "SQL.md",
                 "mode": "source",
                 "source": false
               }
@@ -87,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Synapse Link.md",
+                "file": "SQL.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Synapse Link.md",
+                "file": "SQL.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Synapse Link.md"
+                "file": "SQL.md"
               }
             }
           },
@@ -172,10 +172,10 @@
   },
   "active": "31b3f5731acf73c3",
   "lastOpenFiles": [
+    "Synapse Link.md",
     "Pasted image 20241004145101.png",
     "Pasted image 20241004144819.png",
     "Apache Spark.md",
-    "Synapse Link.md",
     "Pasted image 20241003092110.png",
     "Synapse Pipelines.md",
     "Pasted image 20241001195754.png",
@@ -203,7 +203,6 @@
     "Delta Lake.md",
     "databricks.md",
     "Unity Catalog.md",
-    "Pasted image 20240911152450.png",
     "Data Warehouse.md",
     "Azure Databases.md",
     "Data Lake.md",

@@ -5,208 +5,6 @@ SQL includes many features and functions that enable you to manipulate data. For
 - Calculate derived data fields.
 - Manipulate string values.
 - Group and aggregate data.
-## Data Types
-### Numerical
-Integer data types hold whole numbers. There are 4 int types:
-* INT: range = -2,147,483,648, -2,147,483,647
-* TINYINT: -128 - 127
-* SMALLINT:
-* BIGINT:
-4 decimal types:
-* FLOAT: standard
-* DOUBLE: more precise but is big file size
-* DECIMAL: exact numerical places, very big file size.
-### String
-### Date/ Time
-The DATE Data type is used to store date values in this format "YYYY-MM-DD"
-### Boolean
-
-
-
-## Check for duplicate entries
-
-## Explore JSON using OPENJSON
-- `FIELDTERMINATOR = '0x0b',`: Sets the field delimiter (vertical tab in this case).
-- `FIELDQUOTE = '0x0b',`: Sets the field quote character (also vertical tab).
-- `ROWTERMINATOR = '0x0a'`: Sets the row terminator (newline character).
-* `jsonDoc NVARCHAR(MAX)`: Defines a column named 'jsonDoc' of type NVARCHAR(MAX) to hold the entire JSON document.
-
-* OPENJSON is a table-valued function that parses JSON text and returns objects and properties from the JSON input as rows and columns.
-	* - OPENROWSET reads the JSON file into a single NVARCHAR(MAX) column.
-	- CROSS APPLY is used with OPENJSON to unpack the JSON data.
-	- The inner WITH clause in OPENJSON specifies the structure of the JSON data, mapping JSON properties to SQL columns.
-```SQL
---View structured json data
-select rate_code, rate_code_id
-from OPENROWSET(
-    BULK 'rate_code_multi_line.json',
-    data_source = 'nyc_taxi_data_raw',
-    format = 'CSV',
-    PARSER_VERSION = '1.0',
-    FIELDTERMINATOR = '0x0b',
-    FIELDQUOTE = '0x0b',
-    ROWTERMINATOR = '0x0b'
-)
-WITH (
-    jsonDoc NVARCHAR(MAX)
-) AS payment_type
-CROSS APPLY OPENJSON (jsonDoc)
-WITH(
-    rate_code_id SMALLINT,
-    rate_code VARCHAR(20)
-)
-```
-
-```sql
-SELECT *
-	FROM OPENROWSET(
-		BULK'payment_type.json',
-		DATA_SOURCE = 'nyx_taxi_data_raw',
-		FORMAT = 'CSV',
-		PARSER_VERSION = '2.0',
-		FIELDTERMINATOR = '0x0b',
-		FIELDQUOTE = '0x0b',
-		ROWTERMINATOR = '0x0a'
-	)
-	WITH (
-	jsonDoc NVARCHAR(MAX)
-	) as payment_type;
-```
-
-use this query to find the info from the json doc
-```sql
-SELECT  JSON_VALUE (jsonDOc, '$.payment_type') payment_type,
-		JSON_VALUE (jsonDOc, '$.payment_type_desc') payment_typedesc,
-FROM OPENROWSET(
-		BULK'payment_type.json',
-		DATA_SOURCE = 'nyx_taxi_data_raw',
-		FORMAT = 'CSV',
-		PARSER_VERSION = '2.0',
-		FIELDTERMINATOR = '0x0b',
-		FIELDQUOTE = '0x0b',
-		ROWTERMINATOR = '0x0a'
-	)
-	WITH (
-	jsonDoc NVARCHAR(MAX)
-	) as payment_type;
-```
-## How to select folders/subfolders/subfiles
-
-CREATE EXTERNAL DATA SOURCE nyc_taxi_data_raw
-WITH (
-    LOCATION = 'https://synapsecoursedatalakes.dfs.core.windows.net/nyc-taxi-data'
-)
-
-This statement creates an external data source named 'nyc_taxi_data_raw'.
-The LOCATION parameter specifies the root URL of the data lake.
-This allows you to use relative paths in subsequent OPENROWSET calls.
-
-### Selecting Data from a Specific Folder
-```
-SELECT TOP 100 *
-FROM OPENROWSET(
-    BULK 'trip_data_green_csv/year=2020/month=01/*',
-    DATA_SOURCE = 'nyc_taxi_data_raw',
-    FORMAT = 'CSV',
-    PARSER_VERSION = '2.0',
-    HEADER_ROW = TRUE
-) AS [result]
-```
-
-This query selects data from all files in the January 2020 folder.
-The * wildcard in the BULK path means it will read all files in that folder.
-DATA_SOURCE refers to the previously created external data source.
-
-### Selecting Data from Multiple Subfolders
-```
-SELECT TOP 100 *
-FROM OPENROWSET(
-    BULK 'trip_data_green_csv/year=*/month=*/*.csv',
-    DATA_SOURCE = 'nyc_taxi_data_raw',
-    FORMAT = 'CSV',
-    PARSER_VERSION = '2.0',
-    HEADER_ROW = TRUE
-) AS [result]
-```
-This query selects data from all CSV files across all years and months.
-The * wildcards in 'year=' and 'month=' allow it to match any year and month subfolder.
-
-### Counting Records in Specific Subfolders
-``` sql
-SELECT
-result.filename() AS file_name,
-count(1) as record_count
-FROM OPENROWSET(
-    BULK ('trip_data_green_csv/year=2020/month=01/*.csv', 'trip_data_green_csv/year=2020/month=03/*.csv'),
-    DATA_SOURCE = 'nyc_taxi_data_raw',
-    FORMAT = 'CSV',
-    PARSER_VERSION = '2.0',
-    HEADER_ROW = TRUE
-) AS [result]
-group by result.filename()
-order by result.filename()
-```
-Using filepath() Function to Extract Folder Information
-```sql
-SELECT
-    result.filename() AS file_name,
-    result.filepath(1) as year,
-    result.filepath(2) as month,
-    count(1) as record_count
-FROM OPENROWSET(
-    BULK 'trip_data_green_csv/year=*/month=*/*.csv',
-    DATA_SOURCE = 'nyc_taxi_data_raw',
-    FORMAT = 'CSV',
-    PARSER_VERSION = '2.0',
-    HEADER_ROW = TRUE
-) AS [result] 
-WHERE result.filename() IN ('green_tripdata_2020-01.csv', 'green_tripdata_2021-01.csv')
-GROUP BY result.filename(), result.filepath(1), result.filepath(2)
-ORDER BY result.filename(), result.filepath(1), result.filepath(2)
-```
-
-This query demonstrates several advanced techniques for working with external data:
-
-filepath() function:
-result.filepath(1) extracts the first folder name in the path (year in this case).
-result.filepath(2) extracts the second folder name in the path (month in this case).
-This is useful for folder structures that represent data hierarchies.
-
-Wildcard usage in BULK path:
-'trip_data_green_csv/year=*/month=*/*.csv' allows selecting all CSV files from all year and month combinations.
-
-filename() function:
-result.filename() returns the name of each file being processed.
-Used in both SELECT and WHERE clauses.
-
-Filtering specific files:
-The WHERE clause filters for specific filenames, allowing precise control over which files are processed.
-
-Grouping and aggregation:
-The GROUP BY clause includes all non-aggregated columns from the SELECT clause.
-This allows for counting records per unique combination of filename, year, and month.
-
-Ordering results:
-The ORDER BY clause sorts the results by filename, year, and then month.
-
-Key Points:
-The filepath() function is powerful for extracting information from the file path itself.
-Combining wildcards in the BULK path with specific filename filtering in the WHERE clause provides flexible yet precise data selection.
-When using functions like filepath() in the SELECT clause, remember to include them in the GROUP BY clause as well.
-This approach allows for efficient analysis of data distributed across a hierarchical folder structure.
-## Views:
-constructs a virtual table that has no physical data based on the result-set of a SQL query
-
-Syntax:
-`CREATE [ OR REPLACE ] VIEW [ IF NOT EXISTS ] view_name AS query; `
-
-Example:
-```sql
-create view course_project.citibike.vw_bike_data as select * from course_project.citibike.jc_bike_data_22 where start_station_id = 'JC014';
-```
-
-Deleting view:
-`DROP VIEW view_name`
 ## SQL Vocab
 ### OPENROWSET
 OPENROWSET allows reading remote files without loading them into tables or creating external tables. Here are the key points:
@@ -245,8 +43,138 @@ Example:
 ```sql
 SELECT DISTINCT city FROM customers;
 ```
+### LEAD
 
-### union
+LEAD accesses data from subsequent rows in the same result set.
+
+Syntax:
+```sql
+LEAD(column, offset, default_value) OVER (ORDER BY column)
+```
+
+Example query:
+```sql
+SELECT 
+    sale_date,
+    sale_amount,
+    LEAD(sale_amount, 1, 0) OVER (ORDER BY sale_date) AS next_sale_amount,
+    sale_amount - LEAD(sale_amount, 1, 0) OVER (ORDER BY sale_date) AS sale_difference
+FROM 
+    sales_table
+ORDER BY 
+    sale_date;
+```
+
+Sample output:
+```
+sale_date   | sale_amount | next_sale_amount | sale_difference
+------------|-------------|-------------------|----------------
+2023-01-01  | 100         | 150               | -50
+2023-01-02  | 150         | 120               | 30
+2023-01-03  | 120         | 200               | -80
+2023-01-04  | 200         | 180               | 20
+2023-01-05  | 180         | 0                 | 180
+```
+
+### LAG
+
+LAG accesses data from previous rows in the result set.
+
+Syntax:
+```sql
+LAG(column, offset, default_value) OVER (ORDER BY column)
+```
+
+Example query:
+```sql
+SELECT 
+    month,
+    revenue,
+    LAG(revenue, 1, 0) OVER (ORDER BY month) AS previous_month_revenue,
+    (revenue - LAG(revenue, 1, 0) OVER (ORDER BY month)) / LAG(revenue, 1, 0) OVER (ORDER BY month) * 100 AS growth_rate
+FROM 
+    monthly_revenue
+ORDER BY 
+    month;
+```
+
+Sample output:
+```
+month     | revenue | previous_month_revenue | growth_rate
+----------|---------|------------------------|------------
+2023-01   | 10000   | 0                      | NULL
+2023-02   | 12000   | 10000                  | 20.00
+2023-03   | 11500   | 12000                  | -4.17
+2023-04   | 13000   | 11500                  | 13.04
+2023-05   | 14500   | 13000                  | 11.54
+```
+
+### PARTITION BY
+
+PARTITION BY divides the result set into partitions for window functions.
+Let's use a scenario where we want to calculate the average salary for each department, as well as each employee's salary difference from their department average.
+
+Here's the SQL query using PARTITION BY:
+
+```sql
+SELECT 
+    employee_name,
+    department,
+    salary,
+    AVG(salary) OVER (PARTITION BY department) AS dept_avg_salary,
+    salary - AVG(salary) OVER (PARTITION BY department) AS salary_diff_from_avg
+FROM 
+    employees
+ORDER BY 
+    department, salary DESC;
+```
+sample output:
+```
+employee_name | department | salary | dept_avg_salary | salary_diff_from_avg
+--------------|------------|--------|-----------------|----------------------
+John Smith    | HR         | 75000  | 66666.67        | 8333.33
+Jane Doe      | HR         | 68000  | 66666.67        | 1333.33
+Mike Johnson  | HR         | 57000  | 66666.67        | -9666.67
+Sarah Lee     | IT         | 92000  | 81000.00        | 11000.00
+Tom Brown     | IT         | 85000  | 81000.00        | 4000.00
+Lisa Wang     | IT         | 78000  | 81000.00        | -3000.00
+David Chen    | IT         | 69000  | 81000.00        | -12000.00
+Emily White   | Sales      | 88000  | 79000.00        | 9000.00
+Chris Green   | Sales      | 82000  | 79000.00        | 3000.00
+Alex Taylor   | Sales      | 67000  | 79000.00        | -12000.00
+```
+### OVER
+
+OVER defines the window of rows for a window function to operate on.
+
+Example combining PARTITION BY and OVER:
+```sql
+SELECT 
+    employee_name,
+    department,
+    salary,
+    RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank
+FROM 
+    employees
+ORDER BY 
+    department, salary_rank;
+```
+
+Sample output:
+```
+employee_name | department | salary | salary_rank
+--------------|------------|--------|------------
+John Doe      | IT         | 85000  | 1
+Jane Smith    | IT         | 82000  | 2
+Bob Johnson   | IT         | 78000  | 3
+Alice Brown   | HR         | 75000  | 1
+Carol White   | HR         | 72000  | 2
+David Lee     | HR         | 70000  | 3
+Eva Green     | Sales      | 90000  | 1
+Frank Black   | Sales      | 88000  | 2
+Grace Tan     | Sales      | 85000  | 3
+```
+### UNION
 returns the result of subquery1 and the rows of subquery 2
 ```sql
 (select * from jc_bike_data order by started_at asc limit 5)
@@ -558,6 +486,209 @@ Correct:
 #### Remember:
 - Use WHERE for filtering individual rows based on column values.
 - Use HAVING for filtering groups based on the results of aggregate functions.
+## Data Types
+### Numerical
+Integer data types hold whole numbers. There are 4 int types:
+* INT: range = -2,147,483,648, -2,147,483,647
+* TINYINT: -128 - 127
+* SMALLINT:
+* BIGINT:
+4 decimal types:
+* FLOAT: standard
+* DOUBLE: more precise but is big file size
+* DECIMAL: exact numerical places, very big file size.
+### String
+### Date/ Time
+The DATE Data type is used to store date values in this format "YYYY-MM-DD"
+### Boolean
+
+
+
+## Check for duplicate entries
+
+## Explore JSON using OPENJSON
+- `FIELDTERMINATOR = '0x0b',`: Sets the field delimiter (vertical tab in this case).
+- `FIELDQUOTE = '0x0b',`: Sets the field quote character (also vertical tab).
+- `ROWTERMINATOR = '0x0a'`: Sets the row terminator (newline character).
+* `jsonDoc NVARCHAR(MAX)`: Defines a column named 'jsonDoc' of type NVARCHAR(MAX) to hold the entire JSON document.
+
+* OPENJSON is a table-valued function that parses JSON text and returns objects and properties from the JSON input as rows and columns.
+	* - OPENROWSET reads the JSON file into a single NVARCHAR(MAX) column.
+	- CROSS APPLY is used with OPENJSON to unpack the JSON data.
+	- The inner WITH clause in OPENJSON specifies the structure of the JSON data, mapping JSON properties to SQL columns.
+```SQL
+--View structured json data
+select rate_code, rate_code_id
+from OPENROWSET(
+    BULK 'rate_code_multi_line.json',
+    data_source = 'nyc_taxi_data_raw',
+    format = 'CSV',
+    PARSER_VERSION = '1.0',
+    FIELDTERMINATOR = '0x0b',
+    FIELDQUOTE = '0x0b',
+    ROWTERMINATOR = '0x0b'
+)
+WITH (
+    jsonDoc NVARCHAR(MAX)
+) AS payment_type
+CROSS APPLY OPENJSON (jsonDoc)
+WITH(
+    rate_code_id SMALLINT,
+    rate_code VARCHAR(20)
+)
+```
+
+```sql
+SELECT *
+	FROM OPENROWSET(
+		BULK'payment_type.json',
+		DATA_SOURCE = 'nyx_taxi_data_raw',
+		FORMAT = 'CSV',
+		PARSER_VERSION = '2.0',
+		FIELDTERMINATOR = '0x0b',
+		FIELDQUOTE = '0x0b',
+		ROWTERMINATOR = '0x0a'
+	)
+	WITH (
+	jsonDoc NVARCHAR(MAX)
+	) as payment_type;
+```
+
+use this query to find the info from the json doc
+```sql
+SELECT  JSON_VALUE (jsonDOc, '$.payment_type') payment_type,
+		JSON_VALUE (jsonDOc, '$.payment_type_desc') payment_typedesc,
+FROM OPENROWSET(
+		BULK'payment_type.json',
+		DATA_SOURCE = 'nyx_taxi_data_raw',
+		FORMAT = 'CSV',
+		PARSER_VERSION = '2.0',
+		FIELDTERMINATOR = '0x0b',
+		FIELDQUOTE = '0x0b',
+		ROWTERMINATOR = '0x0a'
+	)
+	WITH (
+	jsonDoc NVARCHAR(MAX)
+	) as payment_type;
+```
+## How to select folders/subfolders/subfiles
+
+CREATE EXTERNAL DATA SOURCE nyc_taxi_data_raw
+WITH (
+    LOCATION = 'https://synapsecoursedatalakes.dfs.core.windows.net/nyc-taxi-data'
+)
+
+This statement creates an external data source named 'nyc_taxi_data_raw'.
+The LOCATION parameter specifies the root URL of the data lake.
+This allows you to use relative paths in subsequent OPENROWSET calls.
+
+### Selecting Data from a Specific Folder
+```
+SELECT TOP 100 *
+FROM OPENROWSET(
+    BULK 'trip_data_green_csv/year=2020/month=01/*',
+    DATA_SOURCE = 'nyc_taxi_data_raw',
+    FORMAT = 'CSV',
+    PARSER_VERSION = '2.0',
+    HEADER_ROW = TRUE
+) AS [result]
+```
+
+This query selects data from all files in the January 2020 folder.
+The * wildcard in the BULK path means it will read all files in that folder.
+DATA_SOURCE refers to the previously created external data source.
+
+### Selecting Data from Multiple Subfolders
+```
+SELECT TOP 100 *
+FROM OPENROWSET(
+    BULK 'trip_data_green_csv/year=*/month=*/*.csv',
+    DATA_SOURCE = 'nyc_taxi_data_raw',
+    FORMAT = 'CSV',
+    PARSER_VERSION = '2.0',
+    HEADER_ROW = TRUE
+) AS [result]
+```
+This query selects data from all CSV files across all years and months.
+The * wildcards in 'year=' and 'month=' allow it to match any year and month subfolder.
+
+### Counting Records in Specific Subfolders
+``` sql
+SELECT
+result.filename() AS file_name,
+count(1) as record_count
+FROM OPENROWSET(
+    BULK ('trip_data_green_csv/year=2020/month=01/*.csv', 'trip_data_green_csv/year=2020/month=03/*.csv'),
+    DATA_SOURCE = 'nyc_taxi_data_raw',
+    FORMAT = 'CSV',
+    PARSER_VERSION = '2.0',
+    HEADER_ROW = TRUE
+) AS [result]
+group by result.filename()
+order by result.filename()
+```
+Using filepath() Function to Extract Folder Information
+```sql
+SELECT
+    result.filename() AS file_name,
+    result.filepath(1) as year,
+    result.filepath(2) as month,
+    count(1) as record_count
+FROM OPENROWSET(
+    BULK 'trip_data_green_csv/year=*/month=*/*.csv',
+    DATA_SOURCE = 'nyc_taxi_data_raw',
+    FORMAT = 'CSV',
+    PARSER_VERSION = '2.0',
+    HEADER_ROW = TRUE
+) AS [result] 
+WHERE result.filename() IN ('green_tripdata_2020-01.csv', 'green_tripdata_2021-01.csv')
+GROUP BY result.filename(), result.filepath(1), result.filepath(2)
+ORDER BY result.filename(), result.filepath(1), result.filepath(2)
+```
+
+This query demonstrates several advanced techniques for working with external data:
+
+filepath() function:
+result.filepath(1) extracts the first folder name in the path (year in this case).
+result.filepath(2) extracts the second folder name in the path (month in this case).
+This is useful for folder structures that represent data hierarchies.
+
+Wildcard usage in BULK path:
+'trip_data_green_csv/year=*/month=*/*.csv' allows selecting all CSV files from all year and month combinations.
+
+filename() function:
+result.filename() returns the name of each file being processed.
+Used in both SELECT and WHERE clauses.
+
+Filtering specific files:
+The WHERE clause filters for specific filenames, allowing precise control over which files are processed.
+
+Grouping and aggregation:
+The GROUP BY clause includes all non-aggregated columns from the SELECT clause.
+This allows for counting records per unique combination of filename, year, and month.
+
+Ordering results:
+The ORDER BY clause sorts the results by filename, year, and then month.
+
+Key Points:
+The filepath() function is powerful for extracting information from the file path itself.
+Combining wildcards in the BULK path with specific filename filtering in the WHERE clause provides flexible yet precise data selection.
+When using functions like filepath() in the SELECT clause, remember to include them in the GROUP BY clause as well.
+This approach allows for efficient analysis of data distributed across a hierarchical folder structure.
+## Views:
+constructs a virtual table that has no physical data based on the result-set of a SQL query
+
+Syntax:
+`CREATE [ OR REPLACE ] VIEW [ IF NOT EXISTS ] view_name AS query; `
+
+Example:
+```sql
+create view course_project.citibike.vw_bike_data as select * from course_project.citibike.jc_bike_data_22 where start_station_id = 'JC014';
+```
+
+Deleting view:
+`DROP VIEW view_name`
+
 ## Create an external data source
 ```sql
 create external data source nyc_taxi_data
