@@ -207,6 +207,11 @@
   },
   "active": "915232d4ffb2dccd",
   "lastOpenFiles": [
+    "review.md",
+    "PySpark_SQL_Cheat_Sheet.pdf",
+    "Pasted image 20250208111704.png",
+    "Interview Notes.md",
+    "Azure Databricks + Pyspark.md",
     "Python.md",
     "Pandas.md",
     "NumPy.md",
@@ -234,7 +239,6 @@
     "External Data Source.md",
     "SQL.md",
     "Azure Synapse.md",
-    "Pasted image 20240915181049.png",
     "Apache Spark.md",
     "SparkSQL.md",
     "Data Pipelines.md",
@@ -242,9 +246,6 @@
     "Unity Catalog.md",
     "Data Warehouse.md",
     "Data Factory.md",
-    "Azure Databases.md",
-    "Data Lake.md",
-    "Fullstack NextJS List.md",
     "Untitled 2.canvas",
     "Untitled 1.canvas"
   ]

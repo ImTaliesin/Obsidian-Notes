@@ -1,50 +1,33 @@
-[[Unity Catalog]] [[SQL]] [[PySpark]]
+[[Unity Catalog]] [[SQL]] [[PySpark]] 
+![[PySpark_SQL_Cheat_Sheet.pdf]]
+# Auth
 
-# Project Steps
-## Imports
+## Cluter-scoped auth 
+	Auth is done in Databricks>Compute>Name>Advanced Settings
+		spark.databricks.cluster.profile singleNode
+		spark.master local[*, 4] 
+		spark.databricks.delta.preview.enabled true
+		fs.azure.account.key.synapsecoursedatalakes.dfs.core.windows.net
+		{{secrets/udemy-storageaccount-databricks -scope/UdemyStorageAccountKey}}
 
-### pyspark.sql
-*  A library to use sql commands in pyspark
+# Imports
+	from pyspark.sql.functions
+		col
+		current_timestamp()
+		to_timestamp()
+		concat()
+		lit()
+			Gives a colum a 'literal' value
+				to_timestamp(concat(col('date'), lit(' '), col('time')),
+				'yyyy-MM-dd HH:mm:ss'))
+	from pyspark.sq1.types
+		StructField
+		StuctType
+		StringType..etc
+# Mount
 
-#### pyspark.sql.functions
-	current_timestamp()
-		Returns current timestamp in the cluster's timezone
-		* No parameters required
-		* Returns timestamp type
-		* Example: `df.withColumn("current_time", current_timestamp())`
+# Specify Schema
 
-	to_timestamp() 
-		Converts string to timestamp using specified format 
-		Takes 2 params: column/string and format pattern
-		Returns timestamp type 
-		Example: to_timestamp(col("date_string"), "yyyy-MM-dd HH:mm:ss")
+# Query
 
-	concat()
-		Concatenates multiple columns/literals into single string
-		Takes multiple params: columns/literals to combine
-		Returns string type
-		Example: concat(col("first_name"), lit(" "), col("last_name"))
-
-	col()
-		References column in DataFrame
-		Takes 1 param: column name as string
-		Returns Column type
-		Example: col("column_name")
-
-	lit()
-		Creates literal/constant value as column
-		Takes 1 param: value to convert
-		Returns Column type with constant value
-		Example: lit("constant_text")
-		
-#### pyspark.sql.types
-	StructType()  holds multiple StructField() 
-		requires fields
-		Example: circuits_schema = StructType(fields= [StructField('name',StringType(), False)
-
-	StructField()
-		Has 3 params: StructField('column_name', {name}
-								StringType(), {its type}
-								True/False) {nullable or not}
-
-
+# Write
