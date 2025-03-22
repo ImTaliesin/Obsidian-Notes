@@ -78,3 +78,45 @@
 #### Anova Test / F Test
 
 #### Chi Square Test
+
+<br>
+
+
+<br> <br>
+# Types of Data
+
+
+## Quantitative
+	Numerical Data
+### Discrete
+	Whole numbers
+	Must be positive
+		EX: # of bank accounts / Children in family
+### Continuous
+	Any numerical value, can have deciman or be negative
+	EX: Weights / float / temp / speed
+<br>
+## Qualitative
+	Categorical Data
+### Nominal
+	Cannot be ranked
+	EX: Gender, blood type, zip code
+### Ordinal
+	Can be ranked
+	EX: Customer feedback (good, bad, mixed)
+
+<br>
+## Nominal
+* This scale classifies data into distinct categories (Qualitative/Categorial) that do now have an intrinsic order
+* Data is categorized based on labels, names, or qualities
+* Categories are mutually exclusive
+* No logical order among categories (no rank)
+## Ordinal
+* This Scale classifies the data into categories that can be ranked or ordered
+* Data is categorized and ranked in a specific order
+* The interval between ranks are not necessarily equal
+	* EX: Education level
+		* HS, BA, MA, PHD
+## Interval
+
+## Ratio
