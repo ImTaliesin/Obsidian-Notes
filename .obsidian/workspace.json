@@ -4,39 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "80df61f758860172",
+        "id": "3d772a061c39f604",
         "type": "tabs",
         "children": [
           {
-            "id": "31b3f5731acf73c3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Power BI.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Power BI"
-            }
-          },
-          {
-            "id": "d4443c63995e19c5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Interview Notes.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Interview Notes"
-            }
-          },
-          {
-            "id": "af965ab546b78de2",
+            "id": "bf8187604ede85ff",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -49,8 +21,7 @@
               "title": "Statistics"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -81,7 +52,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "datafra",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -107,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "d2eb0c01751dfe73",
@@ -123,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Data Warehouse.md",
+                "file": "Data Engineering Notes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -133,7 +105,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Data Warehouse"
+              "title": "Backlinks for Data Engineering Notes"
             }
           },
           {
@@ -142,12 +114,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Data Warehouse.md",
+                "file": "Data Engineering Notes.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Data Warehouse"
+              "title": "Outgoing links from Data Engineering Notes"
             }
           },
           {
@@ -169,10 +141,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Data Warehouse.md"
+                "file": "Data Engineering Notes.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of Data Warehouse"
+              "title": "Outline of Data Engineering Notes"
             }
           },
           {
@@ -218,47 +190,47 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "af965ab546b78de2",
+  "active": "bf8187604ede85ff",
   "lastOpenFiles": [
-    "Pasted image 20250323162651.png",
-    "Untitled 1.md",
-    "Statistics.md",
+    "Pasted image 20250323183600.png",
     "Untitled.md",
+    "Untitled 1.md",
+    "Pasted image 20250323162651.png",
     "databricks.md",
-    "Python.md",
+    "Statistics.md",
+    "Data Engineering Notes.md",
+    "Data Lake.md",
     "Pandas.md",
-    "NumPy.md",
-    "Interview Notes.md",
-    "Power BI.md",
-    "review notes.md",
-    "PySpark.md",
-    "PySpark_SQL_Cheat_Sheet.pdf",
-    "SQL.md",
-    "Apache Spark.md",
     "review.md",
-    "Azure Databricks + Pyspark.md",
+    "PySpark_SQL_Cheat_Sheet.pdf",
     "Pasted image 20250208111704.png",
-    "Data Warehouse.md",
+    "Interview Notes.md",
+    "Azure Databricks + Pyspark.md",
+    "Python.md",
+    "NumPy.md",
+    "Azure Databricks.md",
+    "PySpark.md",
+    "Data Ingestion.md",
+    "review notes.md",
+    "Synapse Pipelines.md",
     "Synapse Link.md",
     "Pasted image 20241004145101.png",
     "Pasted image 20241004144819.png",
     "Pasted image 20241003092110.png",
-    "Synapse Pipelines.md",
     "Pasted image 20241001195754.png",
-    "Azure Synapse.md",
-    "Data Pipelines.md",
     "Pasted image 20241001032014.png",
     "Pasted image 20240930232330.png",
     "Pasted image 20240929201147.png",
     "Pasted image 20240929201132.png",
-    "Data Ingestion.md",
     "stored procedure.md",
-    "Data Engineering Notes.md",
-    "Data Engineering Raw-bronze-silver-gold pipeline.md",
     "Untitled 4.canvas",
+    "Data Engineering Raw-bronze-silver-gold pipeline.md",
     "Untitled 3.canvas",
-    "Generics.md",
-    "Pasted image 20240915181049.png",
+    "External Data Source.md",
+    "SQL.md",
+    "Azure Synapse.md",
+    "Apache Spark.md",
+    "SparkSQL.md",
     "Untitled 2.canvas",
     "Untitled 1.canvas"
   ]

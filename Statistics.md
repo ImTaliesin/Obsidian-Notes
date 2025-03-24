@@ -171,6 +171,13 @@
 		Quality control
 		Experimental design
 
+## Covariance
+	The measure of how much two variables impact each other
+	High covariance (Positive) suggests they impact one another a lot
+	Low covariance (Negative)
+
+	Covariance(x,y) = (Σ(xi-xbar)(yi-ybar))/n-1
+	Covariance(x,x) = variance(x)
 ## Standard Dev
 	Square root of variance
 	Measures data dispersion in original units
@@ -218,4 +225,9 @@ This summary is often visualized with a box-and-whisker plot, where the box repr
 
 
 <br>
-# 1
+# Distribution Types/Techniques
+
+## Log Normal Distribution
+![[Pasted image 20250323183600.png]]
+
+
