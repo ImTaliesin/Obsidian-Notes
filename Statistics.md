@@ -1,3 +1,4 @@
+[[Data Analytics]] [[Python]] [[Pandas]] [[NumPy]]
 # Types of Statistics
 
 ## Descriptive Statistics
@@ -19,7 +20,6 @@
 #### Box Plot
 
 ### Pie Chart
-#### PDF, PMF
 <br>
 ### Summary Statistics
 #### Five Number Summary
@@ -79,10 +79,7 @@
 
 #### Chi Square Test
 
-<br>
-
-
-<br> <br>
+<br> 
 # Types of Data
 
 
@@ -239,16 +236,54 @@ This summary is often visualized with a box-and-whisker plot, where the box repr
 ![[Pasted image 20250323162651.png]]
 
 ## Probability Distribution Functions
-	Probability Distribution Functions describe how the probabilities are distributed over the values of a random variable.
 
-### Probability Mass Functions PMF
-	Used for discrete random variable
-	Equal probablility
+### Probability Density Function (PDF)
+	A PDF is like a "likelihood map" for continuous random variables (things that can take any value in a range, like height or temperature).
+	 Can be interpreted as providing a relative likelihood that the value of the random variable would be equal to that sample. 
+	The value of the PDF at two different samples can be used to infer, in any particular draw of the random variable, how much more likely it is that the random variable would be close to one sample compared to the other sample.
+- For continuous random variables
+- Properties:
+    - Non-negative: f(x) ≥ 0 for all x
+    - Area equals 1: ∫f(x)dx = 1
+    - P(a < X < b) = ∫[a to b]f(x)dx
+    - Not a probability but a density
+![[Pasted image 20250324210127.png]]
+### Probability Mass Function (PMF)
+	PMF is a function that gives the probability that a discrete random variable is exactly equal to some value.
+- For **discrete** random variables (like dice rolls, number of children)
+- Gives the **exact probability** of each possible value
+- You can directly read off probabilities (e.g., P(X=3) = 0.25 means 25% chance of getting exactly 3)
+- Sum of all probabilities equals 1
+- Values are between 0 and 1 (they're actual probabilities)
+- Properties:
+    - Non-negative: P(X = x) ≥ 0
+    - Sum equals 1: ∑P(X = x) = 1
+    - P(X = x) represents probability mass at point x
+     ![[Pasted image 20250324205956.png]]
 
+
+#### Key Difference
+- **PMF**: Gives probability at exact points (like spikes on a graph)
+- **PDF**: Gives density - only areas under the curve are probabilities (like a smooth hill)
+
+**Example:**
+- PMF: Probability of rolling exactly 4 on a die is 1/6
+- PDF: Can't give probability of height being exactly 5'10" (it's 0), but can give probability of height being between 5'9" and 5'11"
+
+### Cumulative Distribution Function (CDF)
+	Probability that random variable X is less than or equal to x
+- Works for both discrete and continuous variables
+- F(x) = P(X ≤ x)
+- Monotonically increasing function
+	- a **monotonic function** (or **monotone function**) is a function between ordered sets that preserves or reverses the given order
+- For continuous: F(x) = ∫[-∞ to x]f(t)dt
+
+### Key Relationships
+
+- PDF is the derivative of CDF (continuous case)
+- PMF differences give CDF steps (discrete case)
+- Variance = E[(X-μ)²] = ∫(x-μ)²f(x)dx
 ![[Pasted image 20250324144622.png]]
-### Probability Density Function PDF
-	Used for continuous random variables.
-
 <br>
 # Distribution Types/Techniques
 
