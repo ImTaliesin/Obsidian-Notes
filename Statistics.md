@@ -178,7 +178,24 @@
 
 	Covariance(x,y) = (Σ(xi-xbar)(yi-ybar))/n-1
 	Covariance(x,x) = variance(x)
-## Standard Dev
+
+### Pearson Correlation Coefficient -> [-1 to 1]
+	Puts covariance into a measurable scale
+	row x,y = (Cov(x,y)/σx * σy)
+		the closer the value is to +1, the higher correlation exists between x,y
+		The most the value towards -1, the negative correlation is higher
+		
+![[Pasted image 20250324142358.png]]
+
+### Spearman Rank Correlation -> [-1 to 1] 
+	Correlates nonlinear data
+
+	Rs = Cov(R(x),R(y))/σ(R(x)) * σ(R(y))
+		Covariance the rank of x and y, then divide by the standard deviation of the rank of x multiplied by the rank of y
+
+
+![[Pasted image 20250324142817.png]]
+## σ Standard Dev
 	Square root of variance
 	Measures data dispersion in original units
 	Most common measure of statistical dispersion
@@ -221,8 +238,16 @@
 This summary is often visualized with a box-and-whisker plot, where the box represents Q1, median, and Q3, while the whiskers extend to the minimum and maximum (or to 1.5 × IQR from the quartiles, with outliers shown as points).
 ![[Pasted image 20250323162651.png]]
 
-## 2
+## Probability Distribution Functions
+	Probability Distribution Functions describe how the probabilities are distributed over the values of a random variable.
 
+### Probability Mass Functions PMF
+	Used for discrete random variable
+	Equal probablility
+
+![[Pasted image 20250324144622.png]]
+### Probability Density Function PDF
+	Used for continuous random variables.
 
 <br>
 # Distribution Types/Techniques
